@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Données</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Données</h1>
+
+    <form action="/data" method="get">
+        <label for="collection">Choisir une collection :</label>
+        <select name="collection" id="collection" onchange="this.form.submit()">
+            <option value="">-- Sélectionner --</option>
+            {% for collection in collections %}
+                <option value="{{ collection }}" {% if collection == selected_collection %}selected{% endif %}>
+                    {{ collection }}
+                </option>
+            {% endfor %}
+        </select>
+    </form>
+
+    {% if selected_collection %}
+        <h2>Données de la collection "{{ selected_collection }}"</h2>
+        {% if data %}
+            <table>
+                <thead>
+                    <tr>
+                        {% for key in data[0] %}
+                            <th>{{ key }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for document in data %}
+                        <tr>
+                            {% for key, value in document.items() %}
+                                <td>{{ value }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Aucune donnée trouvée dans cette collection (ou la collection est vide).</p>
+        {% endif %}
+    {% endif %}
+</body>
+</html>

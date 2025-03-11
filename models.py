@@ -1,47 +1,75 @@
-from pymongo import MongoClient
+from pymongo import MongoClient, errors
+from bson import ObjectId  # Importez ObjectId pour la conversion
 
-# Configuration de la connexion MongoDB
-MONGO_URI = "mongodb://localhost:27017/"  # Changez si nécessaire
-DATABASE_NAME = "mydb"  # Nom de votre base de données
-COLLECTION_NAME = "city"  # Nom de votre collection
+# --- Configuration ---
+MONGO_URI = "mongodb://localhost:27017/"
+DATABASE_NAME = "mydb"  # Remplacez par le NOM DE VOTRE BASE
+DATA_FOLDER = "data"  # Plus besoin de cette variable ici
 
-# Connexion au client MongoDB (faites-en une fonction pour la réutiliser)
+# --- Fonctions utilitaires ---
+
 def get_mongo_client():
-    """Retourne un client MongoDB connecté."""
-    return MongoClient(MONGO_URI)
+    """Retourne un client MongoDB connecté (ou None si erreur)."""
+    try:
+        client = MongoClient(MONGO_URI)
+        client.admin.command('ping')  # Test de connexion
+        print("Connecté à MongoDB")  # Message de succès (facultatif)
+        return client
+    except errors.ConnectionFailure:
+        print("Erreur: Impossible de se connecter à MongoDB.")
+        return None
+    except Exception as e:
+        print(f"Autre erreur MongoDB: {e}")
+        return None
 
-# Fonctions d'interaction avec la base de données
-def get_data():
-    """Récupère des données de la collection."""
-    client = get_mongo_client()
-    db = client[DATABASE_NAME]
-    collection = db[COLLECTION_NAME]
-    # IMPORTANT: Pour du Big Data, NE FAITES PAS list(collection.find()) sans filtre !
-    # Utilisez un filtre, une projection, ou des agrégations.
-    # Exemple avec filtre:
-    # return list(collection.find({'champ': 'valeur'}))
-    # return list(collection.find().limit(100)) # Limitez le nombre de résultats
-    # Pour cet exemple de base, on renvoie juste les 100 premiers pour illustrer :
-    data = list(collection.find().limit(100))
-    client.close()  # Fermez la connexion
-    return data
+# --- Fonctions d'interaction avec MongoDB ---
 
-def insert_data(data):
-    """Insère des données dans la collection."""
-    client = get_mongo_client()
-    db = client[DATABASE_NAME]
-    collection = db[COLLECTION_NAME]
-    if isinstance(data, list):
-        collection.insert_many(data)  # Insère plusieurs documents
-    else:
-        collection.insert_one(data)   # Insère un seul document
-    client.close()
+def get_collections(client=None):
+    """Retourne la LISTE DES NOMS de collections."""
+    close_client = False  # Pour savoir si on doit fermer le client à la fin
+    if client is None:  # Si aucun client n'est fourni
+        client = get_mongo_client()  # On en crée un
+        if client is None:  # Si la connexion a échoué
+            return []  # On retourne une liste vide
+        close_client = True  # Il faudra fermer le client
 
-def process_data(input_data):
-    """Fonction de traitement des données (à implémenter)."""
-    # C'est ici que vous mettrez votre logique de traitement (Pandas, Dask, PySpark).
-    # ... (Voir les exemples de ma réponse précédente)
-    # Exemple simple (qui ne fait rien) :
-    client = get_mongo_client()
-    client.close()
-    return {'message': 'Traitement effectué (mais cette fonction ne fait rien pour l\'instant)', 'input': input_data}
+    try:
+        db = client[DATABASE_NAME]  # Accède à la base de données
+        return db.list_collection_names()  # Retourne la liste des noms de collections
+    except Exception as e:
+        print(f"Erreur (liste collections): {e}")
+        return []  # Retourne une liste vide en cas d'erreur
+    finally:
+        if close_client and client:  # Ferme le client si on l'a créé
+            client.close()
+
+def get_data_from_collection(collection_name, query={}, projection=None, limit=100, client=None):
+    """Récupère les données d'UNE collection, avec conversion des ObjectId."""
+    close_client = False
+    if client is None:
+        client = get_mongo_client()
+        if client is None:
+            return []
+        close_client = True
+
+    try:
+        db = client[DATABASE_NAME]
+        collection = db[collection_name]  # Accède à la collection SPÉCIFIQUE
+        cursor = collection.find(query, projection)  # Exécute la requête
+        cursor = cursor.limit(limit)  # Limite le nombre de résultats
+
+        data = []
+        for document in cursor:  # Itère sur les résultats
+            document['_id'] = str(document['_id'])  # Convertit l'ObjectId en string
+            data.append(document)  # Ajoute le document à la liste
+        return data  # Retourne la liste des documents
+
+    except errors.OperationFailure as e:
+        print(f"Erreur (récupération): {e}")
+        return []
+    except Exception as e:
+        print(f"Erreur inattendue: {e}")
+        return []
+    finally:
+        if close_client and client:
+            client.close()
