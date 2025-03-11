@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Donneeeneeeeinod</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Données de {{ ville }}</title>
+    <link rel="stylesheet" href="static/style_ville.css">
 </head>
 <body>
+    <h1>Qualité de l'air à {{ ville }}</h1>
+    <label for="periode">Choisir une période :</label>
+    <select id="periode">
+        <option value="jour">Journalier</option>
+        <option value="mois">Mensuel</option>
+        <option value="annee">Annuel</option>
+        <option value="historique">Historique</option>
+    </select>
 
+    <div class="chart-container">
+        <p id="loading" style="display: none;">Chargement des données...</p>
+        <canvas id="graphique"></canvas>
+    </div>
+
+    <!-- Inclure le fichier JavaScript à la fin du body -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
