@@ -11,7 +11,10 @@ def index():
     return render_template('index.html')  # Si vous avez un template
     # return "Bienvenue dans votre application de traitement de données!"
 
-
+@app_routes.route('/country')
+def donnees():
+    """Route pour chaque ville."""
+    return render_template('donnees.html')
 @app_routes.route('/data', methods=['GET'])
 def get_all_data_route():
     """Récupère toutes les données."""
