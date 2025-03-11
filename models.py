@@ -2,8 +2,8 @@ from pymongo import MongoClient
 
 # Configuration de la connexion MongoDB
 MONGO_URI = "mongodb://localhost:27017/"  # Changez si nécessaire
-DATABASE_NAME = "votre_base_de_donnees"  # Nom de votre base de données
-COLLECTION_NAME = "votre_collection"  # Nom de votre collection
+DATABASE_NAME = "mydb"  # Nom de votre base de données
+COLLECTION_NAME = "city"  # Nom de votre collection
 
 # Connexion au client MongoDB (faites-en une fonction pour la réutiliser)
 def get_mongo_client():
@@ -25,8 +25,6 @@ def get_data():
     data = list(collection.find().limit(100))
     client.close()  # Fermez la connexion
     return data
-
-
 
 def insert_data(data):
     """Insère des données dans la collection."""
