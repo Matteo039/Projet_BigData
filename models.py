@@ -43,7 +43,7 @@ def get_collections(client=None):
         if close_client and client:  # Ferme le client si on l'a créé
             client.close()
 
-def get_data_from_collection(collection_name, query={}, projection=None, limit=100, client=None):
+def get_data_from_collection(collection_name, query={}, projection=None, limit=10, client=None):
     """Récupère les données d'UNE collection, avec conversion des ObjectId."""
     close_client = False
     if client is None:
