@@ -44,3 +44,59 @@ footer {
     color: white;
     margin-top: 20px;
 }
+
+
+/* CARTE //////////////////////////////////////////////////////
+
+/* Conteneur de la carte */
+.carte-container {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+/* Carte SVG */
+.carte-france {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border: 2px solid #6c5ce7;
+    border-radius: 10px;
+    background-color: #f8f9fa;
+}
+
+/* Points des villes */
+.ville circle {
+    fill: #6c5ce7;
+    stroke: white;
+    stroke-width: 2px;
+    cursor: pointer;
+    transition: fill 0.2s ease-in-out;
+}
+
+/* Effet au survol */
+.ville:hover circle {
+    fill: #e17055;
+}
+
+/* Texte des villes */
+.ville text {
+    font-size: 14px;
+    fill: #FFFFFF;
+    font-weight: bold;
+    visibility: hidden;
+    transition: visibility 0.2s ease-in-out;
+}
+.ville rect.bg-text {
+    fill: black;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Affichage du texte au survol */
+.ville:hover text {
+    visibility: visible;
+}
+.ville:hover rect.bg-text {
+    opacity: 0.7;
+}

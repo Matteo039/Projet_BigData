@@ -16,6 +16,11 @@ def cities():
     """Route pour chaque ville."""
     return render_template('city.html')
 
+@app_routes.route('/about')
+def a_propos():
+    """Route pour chaque ville."""
+    return render_template('aPropos.html')
+
 @app_routes.route('/data', methods=['GET'])
 def get_all_data_route():
     """Récupère toutes les données."""

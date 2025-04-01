@@ -9,10 +9,143 @@
 </head>
 <body>
     {% include 'navbar.html' %}
-    <main>
+        <main>
         <section>
             <h2>Présentation</h2>
             <p>Cette application utilise Flask et MongoDB pour traiter et analyser les données météorologiques.</p>
+        </section>
+
+        <!-- Carte SVG Interactive -->
+        <section class="carte-container">
+            <h2>Carte des villes</h2>
+            <svg class="carte-france" viewBox="0 0 500 500">
+                <!-- Image de la carte -->
+                <image xlink:href="static/france.svg" width="500" height="500" />
+
+                <!-- Points des villes -->
+                <g class="ville" data-ville="Paris" transform="translate(255,125)">
+                    <circle r="8"/>
+                    <rect class="bg-text" x="8" y="-8" width="50" height="18" rx="4" ry="4"/>
+                    <text x="12" y="5">Paris</text>
+                </g>
+
+                <g class="ville" data-ville="Lyon" transform="translate(340,290)">
+                    <circle r="8"/>
+                    <rect class="bg-text" x="8" y="-8" width="50" height="18" rx="4" ry="4"/>
+                    <text x="12" y="5">Lyon</text>
+                </g>
+
+                <g class="ville" data-ville="Bordeaux" transform="translate(150,330)">
+                    <circle r="8"/>
+                    <rect class="bg-text" x="8" y="-8" width="70" height="18" rx="4" ry="4"/>
+                    <text x="12" y="5">Bordeaux</text>
+                </g>
+
+                <g class="ville" data-ville="Dijon" transform="translate(330,200)">
+                    <circle r="8"/>
+                    <rect class="bg-text" x="8" y="-8" width="50" height="18" rx="4" ry="4"/>
+                    <text x="12" y="5">Dijon</text>
+                </g>
+
+                <g class="ville" data-ville="Rennes" transform="translate(105,160)">
+                    <circle r="8"/>
+                    <rect class="bg-text" x="8" y="-8" width="60" height="18" rx="4" ry="4"/>
+                    <text x="12" y="5">Rennes</text>
+                </g>
+
+                <g class="ville" data-ville="Nantes" transform="translate(120,210)">
+                    <circle r="8"/>
+                    <rect class="bg-text" x="8" y="-8" width="60" height="18" rx="4" ry="4"/>
+                    <text x="12" y="5">Nantes</text>
+                </g>
+
+                <g class="ville" data-ville="Strasbourg" transform="translate(430,140)">
+                    <circle r="8"/>
+                    <rect class="bg-text" x="8" y="-8" width="70" height="18" rx="4" ry="4"/>
+                    <text x="12" y="5">Strasbourg</text>
+                </g>
+
+                <g class="ville" data-ville="Lille" transform="translate(275,28)">
+                    <circle r="8"/>
+                    <rect class="bg-text" x="8" y="-8" width="50" height="18" rx="4" ry="4"/>
+                    <text x="12" y="5">Lille</text>
+                </g>
+
+                <g class="ville" data-ville="Marseille" transform="translate(370,400)">
+                    <circle r="8"/>
+                    <rect class="bg-text" x="8" y="-8" width="70" height="18" rx="4" ry="4"/>
+                    <text x="12" y="5">Marseille</text>
+                </g>(184,385)
+
+                <g class="ville" data-ville="Angers" transform="translate(185,184)">
+                    <circle r="8"/>
+                    <rect class="bg-text" x="8" y="-8" width="70" height="18" rx="4" ry="4"/>
+                    <text x="12" y="5">Angers</text>
+                </g>
+                <!-- Points des villes -->
+                 <g class="ville" data-ville="Saint-Étienne" transform="translate(313,278)">
+                    <circle r="8"/>
+                    <rect class="bg-text" x="8" y="-8" width="100" height="18" rx="4" ry="4"/>
+                    <text x="12" y="5">Saint-Étienne</text>
+                </g>
+                <g class="ville" data-ville="Nancy" transform="translate(373,115)">
+                    <circle r="8"/>
+                    <rect class="bg-text" x="8" y="-8" width="100" height="18" rx="4" ry="4"/>
+                    <text x="12" y="5">Nancy</text>
+                </g>
+                <g class="ville" data-ville="Le Havre" transform="translate(170,75)">
+                    <circle r="8"/>
+                    <rect class="bg-text" x="8" y="-8" width="100" height="18" rx="4" ry="4"/>
+                    <text x="12" y="5">Le Havre</text>
+                </g>
+                <g class="ville" data-ville="Valenciennes" transform="translate(284,32)">
+                    <circle r="8"/>
+                    <rect class="bg-text" x="8" y="-8" width="100" height="18" rx="4" ry="4"/>
+                    <text x="12" y="5">Valenciennes</text>
+                </g>
+                <g class="ville" data-ville="Nîmes" transform="translate(312,358)">
+                    <circle r="8"/>
+                    <rect class="bg-text" x="8" y="-8" width="100" height="18" rx="4" ry="4"/>
+                    <text x="12" y="5">Nîmes</text>
+                </g>
+                <g class="ville" data-ville="Toulouse" transform="translate(215,370)">
+                    <circle r="8"/>
+                    <rect class="bg-text" x="8" y="-8" width="100" height="18" rx="4" ry="4"/>
+                    <text x="12" y="5">Toulouse</text>
+                </g>
+                <g class="ville" data-ville="Grenoble" transform="translate(357,291)">
+                    <circle r="8"/>
+                    <rect class="bg-text" x="8" y="-8" width="100" height="18" rx="4" ry="4"/>
+                    <text x="12" y="5">Grenoble</text>
+                </g>
+                <g class="ville" data-ville="Rouen" transform="translate(203,78)">
+                    <circle r="8"/>
+                    <rect class="bg-text" x="8" y="-8" width="100" height="18" rx="4" ry="4"/>
+                    <text x="12" y="5">Rouen</text>
+                </g>
+                <g class="ville" data-ville="Ajaccio" transform="translate(458,454)">
+                    <circle r="8"/>
+                    <rect class="bg-text" x="8" y="-8" width="100" height="18" rx="4" ry="4"/>
+                    <text x="12" y="5">Ajaccio</text>
+                </g>
+                <g class="ville" data-ville="Bastia" transform="translate(482,415)">
+                    <circle r="8"/>
+                    <rect class="bg-text" x="8" y="-8" width="100" height="18" rx="4" ry="4"/>
+                    <text x="12" y="5">Bastia</text>
+                </g>
+                <g class="ville" data-ville="Nice" transform="translate(409,365)">
+                    <circle r="8"/>
+                    <rect class="bg-text" x="8" y="-8" width="100" height="18" rx="4" ry="4"/>
+                    <text x="12" y="5">Nice</text>
+                </g>
+                <g class="ville" data-ville="Pau" transform="translate(154,385)">
+                    <circle r="8"/>
+                    <rect class="bg-text" x="8" y="-8" width="100" height="18" rx="4" ry="4"/>
+                    <text x="12" y="5">Pau</text>
+                </g>
+
+
+            </svg>
         </section>
     </main>
     <footer>
