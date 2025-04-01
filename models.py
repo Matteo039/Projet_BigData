@@ -4,7 +4,7 @@ from bson import ObjectId  # Importez ObjectId pour la conversion
 # --- Configuration ---
 MONGO_URI = "mongodb+srv://corentinpineau:eUUKxqRL2mQ3fcFq@villescluster.gb3tu.mongodb.net/?retryWrites=true&w=majority&appName=VillesCluster"
 DATABASE_NAME = "VillesDB"  # Remplacez par le NOM DE VOTRE BASE
-DATA_FOLDER = "villes"  # Plus besoin de cette variable ici
+COLLECTION_NAME = "villes"
 
 # --- Fonctions utilitaires ---
 
