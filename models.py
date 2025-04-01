@@ -6,29 +6,15 @@ MONGO_URI = "mongodb+srv://corentinpineau:eUUKxqRL2mQ3fcFq@villescluster.gb3tu.m
 DATABASE_NAME = "VillesDB"  # Remplacez par le NOM DE VOTRE BASE
 COLLECTION_NAME = "villes"
 
-# --- Fonctions utilitaires ---
-
-def get_mongo_client():
-    """Retourne un client MongoDB connecté (ou None si erreur)."""
-    try:
-        client = MongoClient(MONGO_URI)
-        client.admin.command('ping')  # Test de connexion
-        print("Connecté à MongoDB")  # Message de succès (facultatif)
-        return client
-    except errors.ConnectionFailure:
-        print("Erreur: Impossible de se connecter à MongoDB.")
-        return None
-    except Exception as e:
-        print(f"Autre erreur MongoDB: {e}")
-        return None
+# Connexion à MongoDB
+client = MongoClient(MONGO_URI)
+db = client[DATABASE_NAME]  # Accède à la base de données
+collection = db[COLLECTION_NAME]  # Accède à la collection
 
 # --- Fonctions d'interaction avec MongoDB ---
 
 def get_data():
     """Récupère des données de la collection."""
-    client = get_mongo_client()
-    db = client[DATABASE_NAME]
-    collection = db[COLLECTION_NAME]
     # IMPORTANT: Pour du Big Data, NE FAITES PAS list(collection.find()) sans filtre !
     # Utilisez un filtre, une projection, ou des agrégations.
     # Exemple avec filtre:
@@ -41,9 +27,6 @@ def get_data():
 
 def insert_data(data):
     """Insère des données dans la collection."""
-    client = get_mongo_client()
-    db = client[DATABASE_NAME]
-    collection = db[COLLECTION_NAME]
     if isinstance(data, list):
         collection.insert_many(data)  # Insère plusieurs documents
     else:
@@ -55,7 +38,6 @@ def process_data(input_data):
     # C'est ici que vous mettrez votre logique de traitement (Pandas, Dask, PySpark).
     # ... (Voir les exemples de ma réponse précédente)
     # Exemple simple (qui ne fait rien) :
-    client = get_mongo_client()
     client.close()
     return {'message': 'Traitement effectué (mais cette fonction ne fait rien pour l\'instant)', 'input': input_data}
 
@@ -63,7 +45,6 @@ def get_collections(client=None):
     """Retourne la LISTE DES NOMS de collections."""
     close_client = False  # Pour savoir si on doit fermer le client à la fin
     if client is None:  # Si aucun client n'est fourni
-        client = get_mongo_client()  # On en crée un
         if client is None:  # Si la connexion a échoué
             return []  # On retourne une liste vide
         close_client = True  # Il faudra fermer le client
@@ -82,7 +63,6 @@ def get_data_from_collection(collection_name, query={}, projection=None, limit=1
     """Récupère les données d'UNE collection, avec conversion des ObjectId."""
     close_client = False
     if client is None:
-        client = get_mongo_client()
         if client is None:
             return []
         close_client = True
