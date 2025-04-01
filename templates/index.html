@@ -5,19 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil - Application Big Data</title>
     <link rel="stylesheet" href="static/style_accueil.css">
+    <link rel="stylesheet" href="static/style_global.css">
 </head>
 <body>
-    <header>
-        <h1>Bienvenue sur l'Application de Traitement de Données Météorologiques</h1>
-    </header>
-    <nav>
-        <ul>
-            <li><a href="/">Accueil</a></li>
-            <li><a href="/data">Voir les données</a></li>
-            <li><a href="/country">Voir chaque ville</a></li>
-            <li><a href="/about">À propos</a></li>
-        </ul>
-    </nav>
+    {% include 'navbar.html' %}
     <main>
         <section>
             <h2>Présentation</h2>

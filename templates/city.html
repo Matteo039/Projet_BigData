@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Données de {{ ville }}</title>
     <link rel="stylesheet" href="static/style_ville.css">
+    <link rel="stylesheet" href="static/style_global.css">
 </head>
 <body>
+    {% include 'navbar.html' %}
     <h1>Qualité de l'air à {{ ville }}</h1>
     <label for="periode">Choisir une période :</label>
     <select id="periode">
