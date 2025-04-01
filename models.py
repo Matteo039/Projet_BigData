@@ -24,6 +24,41 @@ def get_mongo_client():
 
 # --- Fonctions d'interaction avec MongoDB ---
 
+def get_data():
+    """Récupère des données de la collection."""
+    client = get_mongo_client()
+    db = client[DATABASE_NAME]
+    collection = db[COLLECTION_NAME]
+    # IMPORTANT: Pour du Big Data, NE FAITES PAS list(collection.find()) sans filtre !
+    # Utilisez un filtre, une projection, ou des agrégations.
+    # Exemple avec filtre:
+    # return list(collection.find({'champ': 'valeur'}))
+    # return list(collection.find().limit(100)) # Limitez le nombre de résultats
+    # Pour cet exemple de base, on renvoie juste les 100 premiers pour illustrer :
+    data = list(collection.find().limit(100))
+    client.close()  # Fermez la connexion
+    return data
+
+def insert_data(data):
+    """Insère des données dans la collection."""
+    client = get_mongo_client()
+    db = client[DATABASE_NAME]
+    collection = db[COLLECTION_NAME]
+    if isinstance(data, list):
+        collection.insert_many(data)  # Insère plusieurs documents
+    else:
+        collection.insert_one(data)   # Insère un seul document
+    client.close()
+
+def process_data(input_data):
+    """Fonction de traitement des données (à implémenter)."""
+    # C'est ici que vous mettrez votre logique de traitement (Pandas, Dask, PySpark).
+    # ... (Voir les exemples de ma réponse précédente)
+    # Exemple simple (qui ne fait rien) :
+    client = get_mongo_client()
+    client.close()
+    return {'message': 'Traitement effectué (mais cette fonction ne fait rien pour l\'instant)', 'input': input_data}
+
 def get_collections(client=None):
     """Retourne la LISTE DES NOMS de collections."""
     close_client = False  # Pour savoir si on doit fermer le client à la fin
