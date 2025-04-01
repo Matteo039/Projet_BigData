@@ -11,6 +11,7 @@ app.register_blueprint(app_routes)
 
 if __name__ == '__main__':
     # Vérifiez si la base de données est accessible
-    client = models.get_mongo_client()
-    
+    models.get_mongo_client()  # Connexion à MongoDB
+    print(models.get_collections())  # Récupère les collections
+    print(models.get_data_from_collection('villes'))  # Récupère les données d'une collection
     #app.run(debug=True)  # Activez le mode debug pour le développement
