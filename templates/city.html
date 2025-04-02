@@ -6,6 +6,7 @@
     <title>Données de {% if ville %}{{ ville }}{% else %}Ville{% endif %}</title>
     <link rel="stylesheet" href="static/style_ville.css">
     <link rel="stylesheet" href="static/style_global.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     {% include 'navbar.html' %}
@@ -16,6 +17,7 @@
             Toutes les villes
         {% endif %}
     </h1>
+<<<<<<< Updated upstream
 
     <form method="GET">
         <label for="ville">Choisir une ville :</label>
@@ -45,5 +47,64 @@
             <p>Aucune donnée disponible.</p>
         {% endif %}
     </div>
+=======
+
+    <form method="GET">
+        <label for="ville">Choisir une ville :</label>
+        <select id="ville" name="ville" onchange="this.form.submit()">
+            <option value="">Toutes les villes</option>
+            {% for city in cities %}
+                <option value="{{ city }}" {% if ville == city %}selected{% endif %}>{{ city }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="date">Choisir une date :</label>
+        <input type="date" id="date" name="date" onchange="this.form.submit()">
+    </form>
+
+    {% if selected_date %}
+        <p>Date sélectionnée : {{ selected_date }}</p>
+    {% endif %}
+
+    <div class="chart-container">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script>
+        const graphData = {{ graph_data | tojson }};
+
+        const labels = graphData.map(item => item[0]);
+        const values = graphData.map(item => item[1]);
+
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Valeur',
+                    data: values,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
+    <div id="data-container">
+        <h3>Données brutes :</h3>
+        <ul>
+            {% for heure, valeur in graph_data %}
+                <li>Heure: {{ heure }}, Valeur: {{ valeur }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+>>>>>>> Stashed changes
 </body>
 </html>
