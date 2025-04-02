@@ -11,7 +11,7 @@ def index():
 def cities():
     available_cities = get_available_cities()
     selected_ville = request.args.get('ville')
-<<<<<<< Updated upstream
+
     data = get_data(ville=selected_ville)  # Récupérer les données
 
     # Ajoute ces lignes pour le débogage
@@ -31,10 +31,10 @@ def get_all_data_route():
         return jsonify(data)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-=======
+
     selected_date = request.args.get('date')  # Récupérer la date
 
     graph_data = get_data(ville=selected_ville, date=selected_date)  # Passer la date
 
     return render_template('city.html', cities=available_cities, ville=selected_ville, graph_data=graph_data, selected_date=selected_date)
->>>>>>> Stashed changes
+

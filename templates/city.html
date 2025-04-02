@@ -17,37 +17,6 @@
             Toutes les villes
         {% endif %}
     </h1>
-<<<<<<< Updated upstream
-
-    <form method="GET">
-        <label for="ville">Choisir une ville :</label>
-        <select id="ville" name="ville" onchange="this.form.submit()">
-            <option value="">Toutes les villes</option>
-            {% for city in cities %}
-                <option value="{{ city }}" {% if ville == city %}selected{% endif %}>{{ city }}</option>
-            {% endfor %}
-        </select>
-    </form>
-
-    <div id="data-container">
-        {% if data %}
-            <h3>Données :</h3>
-            <ul>
-                {% for item in data %}
-                    <li>
-                        {% if item['Début'] %}
-                            Début: {{ item['Début']}}, Valeur: {{ item['Valeur'] }}, CodeQualité: {{ item['CodeQualité'] }}
-                        {% else %}
-                            Heure: N/A, Valeur: N/A
-                        {% endif %}
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>Aucune donnée disponible.</p>
-        {% endif %}
-    </div>
-=======
 
     <form method="GET">
         <label for="ville">Choisir une ville :</label>
@@ -105,6 +74,5 @@
             {% endfor %}
         </ul>
     </div>
->>>>>>> Stashed changes
 </body>
 </html>
