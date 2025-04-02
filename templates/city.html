@@ -3,27 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Données de {{ ville }}</title>
+    <title>Données de {% if ville %}{{ ville }}{% else %}Ville{% endif %}</title>
     <link rel="stylesheet" href="static/style_ville.css">
     <link rel="stylesheet" href="static/style_global.css">
 </head>
 <body>
     {% include 'navbar.html' %}
-    <h1>Qualité de l'air à {{ ville }}</h1>
-    <label for="periode">Choisir une période :</label>
-    <select id="periode">
-        <option value="jour">Journalier</option>
-        <option value="mois">Mensuel</option>
-        <option value="annee">Annuel</option>
-        <option value="historique">Historique</option>
-    </select>
+    <h1>Données de
+        {% if ville %}
+            {{ ville }}
+        {% else %}
+            Toutes les villes
+        {% endif %}
+    </h1>
 
-    <div class="chart-container">
-        <p id="loading" style="display: none;">Chargement des données...</p>
-        <canvas id="graphique"></canvas>
+    <form method="GET">
+        <label for="ville">Choisir une ville :</label>
+        <select id="ville" name="ville" onchange="this.form.submit()">
+            <option value="">Toutes les villes</option>
+            {% for city in cities %}
+                <option value="{{ city }}" {% if ville == city %}selected{% endif %}>{{ city }}</option>
+            {% endfor %}
+        </select>
+    </form>
+
+    <div id="data-container">
+        {% if data %}
+            <h3>Données :</h3>
+            <ul>
+                {% for item in data %}
+                    <li>
+                        {% if item['Début'] %}
+                            Début: {{ item['Début']}}, Valeur: {{ item['Valeur'] }}, CodeQualité: {{ item['CodeQualité'] }}
+                        {% else %}
+                            Heure: N/A, Valeur: N/A
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Aucune donnée disponible.</p>
+        {% endif %}
     </div>
-
-    <!-- Inclure le fichier JavaScript à la fin du body -->
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
