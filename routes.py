@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request, render_template
 from models import get_data, get_available_cities
 from datetime import datetime
+from dateutil import parser
 
 app_routes = Blueprint('app_routes', __name__)
 
@@ -16,29 +17,27 @@ def cities():
     selected_ville = request.args.get('ville')
     selected_date_debut = request.args.get('date_debut')
     selected_date_fin = request.args.get('date_fin')
+    selected_intervalle = request.args.get('intervalle')  # Récupérer l'intervalle
     error_message = None
-    show_graph = True  # Par défaut, afficher le graphique
-    graph_data = None  # AJOUTE L'INITIALISATION
-    data_type = "graph"
+    show_graph = True
+    graph_data = None  # Assurez-vous que graph_data est initialisé
 
     if selected_date_debut and selected_date_fin:
         try:
-            date_debut = datetime.strptime(selected_date_debut, '%Y-%m-%d')
-            date_fin = datetime.strptime(selected_date_fin, '%Y-%m-%d')
-
+            date_debut = parser.parse(selected_date_debut)
+            date_fin = parser.parse(selected_date_fin)
             if date_fin < date_debut:
                 error_message = "La date de fin doit être postérieure ou égale à la date de début."
-                graph_data = []  # Pas de données à afficher en cas d'erreur
-                show_graph = False  # Ne pas afficher le graphique
+                graph_data = []
+                show_graph = False
             else:
-                graph_data = get_data(ville=selected_ville, date_debut=selected_date_debut, date_fin=selected_date_fin)
+                graph_data = get_data(ville=selected_ville, date_debut=selected_date_debut, date_fin=selected_date_fin, intervalle=selected_intervalle)
         except ValueError:
-            error_message = "Format de date invalide. Veuillez utiliser AAAA-MM-JJ."
+            error_message = "Format de date invalide. Veuillez utiliser un format reconnaissable."
             graph_data = []
-            show_graph = False  # Ne pas afficher le graphique
-            data_type = None
+            show_graph = False
     else:
-        graph_data = get_data(ville=selected_ville, date_debut=selected_date_debut, date_fin=selected_date_fin)
+        graph_data = get_data(ville=selected_ville, date_debut=selected_date_debut, date_fin=selected_date_fin, intervalle=selected_intervalle)
 
     return render_template('city.html',
                            cities=available_cities,
@@ -47,11 +46,13 @@ def cities():
                            selected_date_debut=selected_date_debut,
                            selected_date_fin=selected_date_fin,
                            error_message=error_message,
-                           show_graph=show_graph,
-                           data_type=data_type)
-
+                           show_graph=show_graph)
 
 @app_routes.route('/dataview', methods=['GET'])
 def dataview():
     top_3_cities, bottom_3_cities = get_data()  # Récupérer les 3 pires et les 3 meilleures villes
     return render_template('dataview.html', top_3_cities=top_3_cities, bottom_3_cities=bottom_3_cities)
+
+@app_routes.route('/about')
+def a_propos():
+    return render_template('aPropos.html')

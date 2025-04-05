@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos</title>
+    <link rel="stylesheet" href="static/style_global.css">
+    <style>
+        /* Styles pour les cartes de participants */
+        .participants-container {
+            display: flex;
+            justify-content: space-around; /* Répartit l'espace autour des cartes */
+            padding: 20px;
+        }
+
+        .participant-card {
+            width: 200px; /* Ajuste la largeur des cartes */
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .participant-card img {
+            max-width: 100%; /* L'image ne dépasse pas la largeur de la carte */
+            max-height: 150px; /* Ajuste la hauteur maximale de l'image */
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <main>
+        <h1>À propos de cette application</h1>
+        <p>
+            Cette application a pour but de fournir des informations sur la qualité de l'air dans différentes villes.
+            Les données sont récupérées depuis une base de données MongoDB et affichées sous forme de graphiques et de classements.
+        </p>
+
+        <h2>Participants au projet</h2>
+        <div class="participants-container">
+            <div class="participant-card">
+                <h3>Participant 1</h3>
+                <p>Description du participant 1...</p>
+            </div>
+            <div class="participant-card">
+                <h3>Participant 2</h3>
+                <p>Description du participant 2...</p>
+            </div>
+            <div class="participant-card">
+                <h3>Participant 3</h3>
+                <p>Description du participant 3...</p>
+            </div>
+            <div class="participant-card">
+
+                <h3>Participant 4</h3>
+                <p>Description du participant 4...</p>
+            </div>
+        </div>
+
+        <h2>Échelle de dangerosité de la qualité de l'air (PM2.5)</h2>
+        <p>
+            Cette échelle fournit une indication des risques pour la santé associés aux différents niveaux de concentration de particules fines PM2.5 (en microgrammes par mètre cube - µg/m³). Il est important de consulter les recommandations des autorités locales en matière de qualité de l'air.
+        </p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Indice Qualité Air (IQA)</th>
+                    <th>Niveau de pollution</th>
+                    <th>Risque pour la santé</th>
+                    <th>Recommandations</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0 - 12</td>
+                    <td>Bon</td>
+                    <td>Risque minimal.</td>
+                    <td>Profitez de vos activités de plein air !</td>
+                </tr>
+                <tr>
+                    <td>12.1 - 35.4</td>
+                    <td>Modéré</td>
+                    <td>Risque acceptable pour la plupart des gens, mais les personnes sensibles (enfants, personnes âgées, personnes souffrant de maladies respiratoires ou cardiaques) peuvent ressentir une légère irritation.</td>
+                    <td>Les personnes sensibles devraient réduire les efforts prolongés ou intenses à l'extérieur.</td>
+                </tr>
+                <tr>
+                    <td>35.5 - 55.4</td>
+                    <td>Mauvais pour les groupes sensibles</td>
+                    <td>Les personnes sensibles (enfants, personnes âgées, personnes souffrant de maladies respiratoires ou cardiaques) peuvent ressentir des effets plus importants. La population générale n'est pas susceptible d'être affectée.</td>
+                    <td>Les personnes sensibles devraient éviter les efforts prolongés ou intenses à l'extérieur. La population générale devrait réduire les efforts prolongés ou intenses à l'extérieur.</td>
+                </tr>
+                <tr>
+                    <td>55.5 - 150.4</td>
+                    <td>Mauvais</td>
+                    <td>Tout le monde peut commencer à ressentir des effets sur la santé ; les personnes sensibles peuvent ressentir des effets plus graves.</td>
+                    <td>Les personnes sensibles devraient éviter tout effort à l'extérieur. La population générale devrait réduire considérablement les efforts prolongés ou intenses à l'extérieur.</td>
+                </tr>
+                <tr>
+                    <td>150.5 - 250.4</td>
+                    <td>Très mauvais</td>
+                    <td>Risque élevé d'effets sur la santé pour tout le monde.</td>
+                    <td>Tout le monde devrait éviter tout effort à l'extérieur. Les personnes souffrant de maladies cardiaques ou respiratoires, les enfants et les personnes âgées devraient rester à l'intérieur.</td>
+                </tr>
+                <tr>
+                    <td>250.5 - 500+</td>
+                    <td>Dangereux</td>
+                    <td>Risque très élevé d'effets graves sur la santé pour tout le monde.</td>
+                    <td>Tout le monde devrait rester à l'intérieur et éviter toute activité physique. Les personnes souffrant de maladies cardiaques ou respiratoires, les enfants et les personnes âgées devraient rester à l'intérieur et minimiser leur activité physique.</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

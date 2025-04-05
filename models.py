@@ -1,5 +1,6 @@
 from pymongo import MongoClient, errors
 from datetime import datetime, timedelta
+from dateutil import parser
 
 MONGO_URI = "mongodb+srv://corentinpineau:eUUKxqRL2mQ3fcFq@villescluster.gb3tu.mongodb.net/?retryWrites=true&w=majority&appName=VillesCluster"
 DATABASE_NAME = "VillesDB"
@@ -20,7 +21,7 @@ def get_mongo_client():
         return None
 
 
-def get_data(ville=None, date_debut=None, date_fin=None, limit=100):
+def get_data(ville=None, date_debut=None, date_fin=None, intervalle='heure', limit=100):
     client = get_mongo_client()
 
     try:
@@ -33,73 +34,72 @@ def get_data(ville=None, date_debut=None, date_fin=None, limit=100):
                 query['Ville'] = ville
 
             if date_debut and date_fin:
-                # Convertir les dates en objets datetime
-                start_date = datetime.strptime(date_debut, '%Y-%m-%d')
-                end_date = datetime.strptime(date_fin, '%Y-%m-%d')
+                try:
+                    start_date = parser.parse(date_debut)
+                    end_date = parser.parse(date_fin)
+                except ValueError:
+                    print("Format de date invalide. Utilisez un format reconnaissable.")
+                    return []
 
                 # Préparer les données pour le graphique
-                graph_data = {}  # Utiliser un dictionnaire pour stocker les moyennes par jour
-
-                # Créer une liste de toutes les dates entre la date de début et la date de fin
+                graph_data = {}  # Utiliser un dictionnaire pour stocker les moyennes par intervalle
                 date_list = [start_date + timedelta(days=x) for x in range((end_date - start_date).days + 1)]
 
                 for date in date_list:
-                    date_str = date.strftime('%d/%m/%Y')
-                    daily_query = query.copy()  # Copier la requête de base
-                    daily_query['Début'] = {'$regex': f'^{date_str}'}
+                    if intervalle == 'heure':
+                        for hour in range(24):
+                            date_time_str = date.strftime('%d/%m/%Y') + f' {hour:02d}:00'
+                            daily_query = query.copy()
+                            daily_query['Début'] = {'$regex': f'^{date_time_str}'}
+                            total_valeur, count = calculate_average(collection, daily_query, limit)
+                            graph_data[date_time_str] = total_valeur / count if count > 0 else None
 
-                    daily_data = list(collection.find(daily_query).limit(limit))
-                    total_valeur = 0
-                    count = 0
+                    elif intervalle == 'jour':
+                        date_str = date.strftime('%d/%m/%Y')
+                        daily_query = query.copy()
+                        daily_query['Début'] = {'$regex': f'^{date_str}'}
+                        total_valeur, count = calculate_average(collection, daily_query, limit)
+                        graph_data[date.strftime('%Y-%m-%d')] = total_valeur / count if count > 0 else None
 
-                    for item in daily_data:
-                        try:
-                            total_valeur += float(item['Valeur'])
-                            count += 1
-                        except (KeyError, ValueError) as e:
-                            print(f"Erreur: Impossible d'extraire la valeur pour l'item {item}. Erreur: {e}")
-
-                    if count > 0:
-                        moyenne = total_valeur / count
-                        graph_data[date.strftime('%Y-%m-%d')] = moyenne  # Stocker la moyenne avec la date comme clé
-                    else:
-                        graph_data[date.strftime('%Y-%m-%d')] = None  # Stocker None s'il n'y a pas de données
+                    elif intervalle == 'mois':
+                        date_str = date.strftime('%m/%Y')
+                        monthly_query = query.copy()
+                        monthly_query['Début'] = {'$regex': f'.*/{date_str}'}  # Regex pour le mois
+                        total_valeur, count = calculate_average(collection, monthly_query, limit)
+                        graph_data[date.strftime('%Y-%m')] = total_valeur / count if count > 0 else None
 
                 # Convertir le dictionnaire en liste de tuples pour le graphique
                 graph_data_list = list(graph_data.items())
-
                 return graph_data_list
 
-            elif date_debut:
-                # Si seule la date de début est fournie
-                start_date = datetime.strptime(date_debut, '%Y-%m-%d')
-                date_str = start_date.strftime('%d/%m/%Y')
-                query['Début'] = {'$regex': f'^{date_str}'}
+            else:
+                try:
+                    start_date = parser.parse(date_debut)
+                except ValueError:
+                    print("Format de date invalide. Utilisez un format reconnaissable.")
+                    return []
 
-                data = list(collection.find(query).limit(limit))
+                # Préparer les données pour le graphique
+                graph_data = {}  # Utiliser un dictionnaire pour stocker les moyennes par heure
 
-                graph_data = []
-                for item in data:
-                    try:
-                        heure = item['Début'].split(' ')[1]
-                        valeur = item['Valeur']
-                        graph_data.append((heure, valeur))
-                    except (KeyError, IndexError) as e:
-                        print(f"Erreur: Impossible d'extraire la valeur pour l'item {item}")
+                for hour in range(24):
+                    date_time_str = start_date.strftime('%d/%m/%Y') + f' {hour:02d}:00'
+                    daily_query = query.copy()
+                    daily_query['Début'] = {'$regex': f'^{date_time_str}'}
+                    total_valeur, count = calculate_average(collection, daily_query, limit)
+                    graph_data[date_time_str] = total_valeur / count if count > 0 else None
+                # Convertir le dictionnaire en liste de tuples pour le graphique
+                graph_data_list = list(graph_data.items())
+                return graph_data_list
 
-            # Trier les données par heure
-            # graph_data.sort(key=lambda x: x[0])
-            if graph_data is not None:
-                if isinstance(graph_data, list):
-                    if len(graph_data) > 0:
-                        if isinstance(graph_data[0], tuple):
-                            graph_data.sort(key=lambda x: x[0])
+            # Trier les données par heure (conversion en nombre)
+            # graph_data.sort(key=lambda x: int(x[0].split(':')[0]))
 
             return graph_data
         else:
             # Si aucune date n'est fournie, récupérer les 3 pires et les 3 meilleures villes pour le 31 décembre 2024
             date = "2024-12-31"
-            selected_date = datetime.strptime(date, '%Y-%m-%d')
+            selected_date = parser.parse(date)
             date_str = selected_date.strftime('%d/%m/%Y')
 
             # Récupérer toutes les villes distinctes
@@ -141,6 +141,20 @@ def get_data(ville=None, date_debut=None, date_fin=None, limit=100):
 
     finally:
         client.close()
+
+
+def calculate_average(collection, query, limit):
+    data = list(collection.find(query).limit(limit))
+    total_valeur = 0
+    count = 0
+
+    for item in data:
+        try:
+            total_valeur += float(item['Valeur'])
+            count += 1
+        except (KeyError, ValueError) as e:
+            print(f"Erreur: Impossible d'extraire la valeur pour l'item {item}. Erreur: {e}")
+    return total_valeur, count
 
 
 def get_available_cities():
