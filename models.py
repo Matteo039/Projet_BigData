@@ -85,7 +85,7 @@ def get_data(ville=None, date_debut=None, date_fin=None, limit=100):
                         valeur = item['Valeur']
                         graph_data.append((heure, valeur))
                     except (KeyError, IndexError) as e:
-                        print(f"Erreur: Impossible d'extraire l'heure ou la valeur pour l'item {item}")
+                        print(f"Erreur: Impossible d'extraire la valeur pour l'item {item}")
 
             # Trier les données par heure
             # graph_data.sort(key=lambda x: x[0])
@@ -126,15 +126,14 @@ def get_data(ville=None, date_debut=None, date_fin=None, limit=100):
                     city_data[ville] = None
 
             # Trier les villes en fonction de leur valeur moyenne
-            sorted_cities = sorted(city_data.items(), key=lambda x: x[1] if x[1] is not None else float('inf'),
-                                   reverse=True)
+            city_data = {ville: valeur for ville, valeur in city_data.items() if valeur is not None}
+            sorted_cities = sorted(city_data.items(), key=lambda x: x[1], reverse=True)
 
             # Récupérer les 3 pires et les 3 meilleures villes
             top_3_cities = sorted_cities[:3]
             bottom_3_cities = sorted_cities[-3:]
 
             return top_3_cities, bottom_3_cities
-
 
     except Exception as e:
         print(f"Erreur lors de la récupération des données: {e}")
