@@ -20,59 +20,77 @@
 
     <form method="GET">
         <label for="ville">Choisir une ville :</label>
-        <select id="ville" name="ville" onchange="this.form.submit()">
+        <select id="ville" name="ville">
             <option value="">Toutes les villes</option>
             {% for city in cities %}
                 <option value="{{ city }}" {% if ville == city %}selected{% endif %}>{{ city }}</option>
             {% endfor %}
         </select>
 
-        <label for="date">Choisir une date :</label>
-        <input type="date" id="date" name="date" onchange="this.form.submit()">
+        <label for="date_debut">Date de début :</label>
+        <input type="date" id="date_debut" name="date_debut">
+
+        <label for="date_fin">Date de fin :</label>
+        <input type="date" id="date_fin" name="date_fin">
+
+        <button type="submit">Valider</button>
     </form>
 
-    {% if selected_date %}
-        <p>Date sélectionnée : {{ selected_date }}</p>
+    {% if error_message %}
+        <p class="error">{{ error_message }}</p>
     {% endif %}
 
-    <div class="chart-container">
-        <canvas id="myChart"></canvas>
-    </div>
+    {% if selected_date_debut or selected_date_fin %}
+        <p>
+            {% if selected_date_debut %}
+                Date de début sélectionnée : {{ selected_date_debut }}
+            {% endif %}
+            {% if selected_date_fin %}
+                Date de fin sélectionnée : {{ selected_date_fin }}
+            {% endif %}
+        </p>
+    {% endif %}
 
-    <script>
-        const graphData = {{ graph_data | tojson }};
+    {% if show_graph %}
+        <div class="chart-container">
+            <canvas id="myChart"></canvas>
+        </div>
 
-        const labels = graphData.map(item => item[0]);
-        const values = graphData.map(item => item[1]);
+        <script>
+            const graphData = {{ graph_data | tojson }};
 
-        const ctx = document.getElementById('myChart').getContext('2d');
-        const myChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Valeur',
-                    data: values,
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+            const labels = graphData.map(item => item[0]);
+            const values = graphData.map(item => item[1]);
+
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Valeur',
+                        data: values,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
-            }
-        });
-    </script>
+            });
+        </script>
 
-    <div id="data-container">
-        <h3>Données brutes :</h3>
-        <ul>
-            {% for heure, valeur in graph_data %}
-                <li>Heure: {{ heure }}, Valeur: {{ valeur }}</li>
-            {% endfor %}
-        </ul>
-    </div>
+        <div id="data-container">
+            <h3>Données brutes :</h3>
+            <ul>
+                {% for jour, valeur_moyenne in graph_data %}
+                    <li>Jour: {{ jour }}, Valeur moyenne: {{ valeur_moyenne }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
 </body>
 </html>

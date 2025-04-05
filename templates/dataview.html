@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voir les données</title>
+    <link rel="stylesheet" href="static/style_ville.css">
+    <link rel="stylesheet" href="static/style_global.css">
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <h1>Classement des villes le 31 décembre 2024</h1>
+
+    <h2>Top 3 des villes avec la meilleure qualité de l'air :</h2>
+    <ul>
+        {% for ville, valeur_moyenne in top_3_cities %}
+            <li>{{ ville }}: {{ valeur_moyenne }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Top 3 des villes avec la pire qualité de l'air :</h2>
+    <ul>
+        {% for ville, valeur_moyenne in bottom_3_cities %}
+            <li>{{ ville }}: {{ valeur_moyenne }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
