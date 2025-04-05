@@ -88,3 +88,29 @@ def get_data_from_collection(collection_name, query={}, projection=None, limit=1
     finally:
         if close_client and client:
             client.close()
+
+def preload_data():
+    # Vérifiez si la collection est vide
+    if collection.count_documents({}) == 0:
+        collection_requetes = db['pre-requetes']
+
+        # Récupérer les données de la collection "villes"
+    villes_data = collection.find()
+
+    # Liste pour stocker les requêtes générées
+    preloaded_queries = []
+
+    # Génération des requêtes pour chaque ville
+    for ville in villes_data:
+        nom_ville = ville.get("ANGERS")  # Récupère le nom de la ville
+
+        # Exemple de requêtes générées
+        preloaded_queries.append({
+            "description": f"Données horaires pour {nom_ville}",
+            "requete": {
+                "ville": nom_ville,
+                "Début": { "$gte": "2024-12-31T00:00:00", "$lt": "2024-12-31T23:00:00" }
+            }
+        })
+
+        collection_requetes.insert_many(preloaded_queries)  # Insère les requêtes dans la collection "pre-requetes"

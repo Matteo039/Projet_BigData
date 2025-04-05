@@ -1,5 +1,4 @@
 from flask import Blueprint, jsonify, request, render_template
-# Si vous utilisez models.py:
 from models import get_data, insert_data, process_data  # Importez les fonctions
 
 # Créez un Blueprint pour organiser les routes
@@ -50,3 +49,4 @@ def process_data_route():
         return jsonify(results)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+    
