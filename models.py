@@ -96,6 +96,7 @@ def get_data(ville=None, date_debut=None, date_fin=None, intervalle='heure', lim
             # graph_data.sort(key=lambda x: int(x[0].split(':')[0]))
 
             return graph_data
+
         else:
             # Si aucune date n'est fournie, récupérer les 3 pires et les 3 meilleures villes pour le 31 décembre 2024
             date = "2024-12-31"

@@ -28,19 +28,19 @@
         </select>
 
         <label for="date_debut">Date de début :</label>
-        <input type="date" id="date_debut" name="date_debut">
+        <input type="date" id="date_debut" name="date_debut" value="{{ selected_date_debut }}">
 
         <label for="date_fin">Date de fin :</label>
-        <input type="date" id="date_fin" name="date_fin">
+        <input type="date" id="date_fin" name="date_fin"  value="{{ selected_date_fin }}">
 
         <label>Intervalle de temps :</label>
-        <input type="radio" id="intervalle_heure" name="intervalle" value="heure" checked>
+        <input type="radio" id="intervalle_heure" name="intervalle" value="heure" {% if selected_intervalle == 'heure' or not selected_intervalle %}checked{% endif %}>
         <label for="intervalle_heure">Heures</label>
 
-        <input type="radio" id="intervalle_jour" name="intervalle" value="jour">
+        <input type="radio" id="intervalle_jour" name="intervalle" value="jour" {% if selected_intervalle == 'jour' %}checked{% endif %}>
         <label for="intervalle_jour">Jours</label>
 
-        <input type="radio" id="intervalle_mois" name="intervalle" value="mois">
+        <input type="radio" id="intervalle_mois" name="intervalle" value="mois" {% if selected_intervalle == 'mois' %}checked{% endif %}>
         <label for="intervalle_mois">Mois</label>
 
         <button type="submit">Valider</button>

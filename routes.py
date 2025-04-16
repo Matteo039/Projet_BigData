@@ -1,5 +1,5 @@
-from flask import Blueprint, jsonify, request, render_template
-from models import get_data, get_available_cities
+from flask import Blueprint, jsonify, request, render_template, current_app
+from models import get_data
 from datetime import datetime
 from dateutil import parser
 
@@ -13,7 +13,7 @@ def index():
 
 @app_routes.route('/city', methods=['GET'])
 def cities():
-    available_cities = get_available_cities()
+    available_cities = current_app.config['available_cities']
     selected_ville = request.args.get('ville')
     selected_date_debut = request.args.get('date_debut')
     selected_date_fin = request.args.get('date_fin')
@@ -50,7 +50,9 @@ def cities():
 
 @app_routes.route('/dataview', methods=['GET'])
 def dataview():
-    top_3_cities, bottom_3_cities = get_data()  # Récupérer les 3 pires et les 3 meilleures villes
+    data = current_app.config['dataview_data']
+    top_3_cities = data['top_3_cities']
+    bottom_3_cities = data['bottom_3_cities']
     return render_template('dataview.html', top_3_cities=top_3_cities, bottom_3_cities=bottom_3_cities)
 
 @app_routes.route('/about')
