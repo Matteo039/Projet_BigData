@@ -46,9 +46,16 @@
         <button type="submit">Valider</button>
     </form>
 
+    {# Afficher le message d'erreur si il existe #}
     {% if error_message %}
         <p class="error">{{ error_message }}</p>
     {% endif %}
+
+    {# Ajouter ici l'affichage du message informatif #}
+    {% if info_message %}
+        <p class="info">{{ info_message }}</p> {# Le message informatif #}
+    {% endif %}
+
 
     {% if selected_date_debut or selected_date_fin %}
         <p>
