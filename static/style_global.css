@@ -1,3 +1,12 @@
+/* En-tête */
+header {
+    background-color: #6c5ce7;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 24px;
+}
+
 /* Enlever la position fixe */
 nav {
     background-color: #333;
@@ -28,4 +37,11 @@ nav ul li a {
 nav ul li a:hover {
     background-color: #555;
     border-radius: 5px;
+}
+
+/* Headings Base Styles */
+h1, h2, h3 {
+    color: #2c3e50; /* A slightly darker blue for headings */
+    margin-top: 30px;
+    margin-bottom: 15px;
 }

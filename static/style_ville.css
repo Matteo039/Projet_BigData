@@ -1,46 +1,126 @@
+/* Général */
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    text-align: center;
-    background-color: #f4f4f4;
-}
-
-h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 0;
     color: #333;
 }
 
-label {
-    font-size: 18px;
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 2rem;
+    color: #2c3e50;
+}
+
+/* Formulaire */
+form {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+}
+
+form label {
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+form input[type="date"],
+form select {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fdfdfd;
+    transition: all 0.3s ease;
+}
+
+form input[type="date"]:focus,
+form select:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 3px rgba(52, 152, 219, 0.4);
+}
+
+form input[type="radio"] {
+    margin-left: 10px;
+}
+
+form button {
+    padding: 10px 16px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #2980b9;
+}
+
+/* Messages */
+p.error {
+    color: #e74c3c;
+    text-align: center;
     font-weight: bold;
 }
 
-select {
-    padding: 5px;
-    font-size: 16px;
-    margin: 10px;
+p.info {
+    color: #2980b9;
+    text-align: center;
+    font-style: italic;
 }
 
+/* Graphique */
 .chart-container {
-    width: 80%;
-    max-width: 800px;
-    margin: 20px auto;
-    background: white;
+    max-width: 900px;
+    margin: 30px auto;
+    background-color: white;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-.error {
-    font-size: 100px;
-    color: forestgreen;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-/* Pour les petits écrans */
+/* Données brutes */
+#data-container {
+    text-align: center;
+    background-color: white;
+    padding: 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+#data-container h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #2c3e50;
+}
+
+#data-container ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
 @media (max-width: 600px) {
     .chart-container {
         width: 95%;
     }
-
     select {
         font-size: 14px;
     }
+}
+
+input[disabled] {
+    background-color: #eaeaea;
+    cursor: not-allowed;
 }

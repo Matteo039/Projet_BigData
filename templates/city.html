@@ -57,16 +57,16 @@
     {% endif %}
 
 
-    {% if selected_date_debut or selected_date_fin %}
-        <p>
-            {% if selected_date_debut %}
-                Date de début sélectionnée : {{ selected_date_debut }}
-            {% endif %}
-            {% if selected_date_fin %}
-                Date de fin sélectionnée : {{ selected_date_fin }}
-            {% endif %}
-        </p>
-    {% endif %}
+{#    {% if selected_date_debut or selected_date_fin %}#}
+{#        <p>#}
+{#            {% if selected_date_debut %}#}
+{#                Date de début sélectionnée : {{ selected_date_debut }}#}
+{#            {% endif %}#}
+{#            {% if selected_date_fin %}#}
+{#                Date de fin sélectionnée : {{ selected_date_fin }}#}
+{#            {% endif %}#}
+{#        </p>#}
+{#    {% endif %}#}
 
     {% if show_graph and graph_data %}
         <div class="chart-container">
@@ -109,5 +109,31 @@
             </ul>
         </div>
     {% endif %}
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const intervalleHeure = document.getElementById("intervalle_heure");
+            const intervalleJour = document.getElementById("intervalle_jour");
+            const intervalleMois = document.getElementById("intervalle_mois");
+            const dateFin = document.getElementById("date_fin");
+
+            function toggleDateFin() {
+                if (intervalleHeure.checked) {
+                    dateFin.disabled = true;
+                    dateFin.value = date_debut.value; // Forcer même date
+                } else {
+                    dateFin.disabled = false;
+                }
+            }
+
+            // Appeler une première fois
+            toggleDateFin();
+
+            // Ajouter les écouteurs d’événements
+            intervalleHeure.addEventListener("change", toggleDateFin);
+            intervalleJour.addEventListener("change", toggleDateFin);
+            intervalleMois.addEventListener("change", toggleDateFin);
+        });
+    </script>
 </body>
 </html>

@@ -1,0 +1,208 @@
+/* static/style_apropos.css */
+
+/* Main content area */
+main {
+    max-width: 1200px; /* Limit content width for better readability on large screens */
+    margin: 20px auto; /* Center the main content with some vertical margin */
+    padding: 0 20px; /* Add some horizontal padding to prevent content from touching edges */
+}
+
+/* Specific heading styles for this page */
+h1, h2 {
+    border-bottom: 2px solid #ecf0f1; /* Subtle underline for headings */
+    padding-bottom: 5px;
+}
+
+
+/* Participants Section Styling */
+.participants-container {
+    display: flex; /* Use flexbox for a responsive row layout */
+    flex-wrap: wrap; /* Allow cards to wrap to the next line on smaller screens */
+    justify-content: center; /* Center cards horizontally */
+    gap: 20px; /* Space between participant cards */
+    margin-top: 25px;
+    margin-bottom: 40px; /* Add space below the participant section */
+}
+
+.participant-card {
+    background-color: #ffffff; /* White background for cards */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 8px; /* Slightly rounded corners */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    flex: 1 1 calc(50% - 20px); /* On larger screens (e.g., tablet), 2 cards per row. '20px' accounts for the gap. */
+    max-width: 380px; /* A reasonable max width for individual cards */
+    min-width: 280px; /* Minimum width before wrapping */
+    text-align: center; /* Center text inside the card */
+    transition: transform 0.2s ease-in-out; /* Smooth hover effect */
+}
+
+.participant-card:hover {
+    transform: translateY(-5px); /* Lift card slightly on hover */
+}
+
+.participant-card h3 {
+    color: #3498db; /* Blue heading for participant names */
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.participant-card p {
+    font-size: 0.95em;
+    color: #555;
+}
+
+/* Table Styling (Échelle de dangerosité) */
+table {
+    width: 100%; /* Make table take full width */
+    border-collapse: collapse; /* Collapse borders for a cleaner look */
+    margin-top: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* Subtle shadow for the table */
+    background-color: #fff; /* White background for the table */
+}
+
+table th,
+table td {
+    border: 1px solid #e0e0e0; /* Light grey borders */
+    padding: 12px 15px; /* Ample padding for readability */
+    text-align: left; /* Align text to the left */
+}
+
+table th {
+    background-color: #3498db; /* Blue background for table headers */
+    color: white; /* White text for headers */
+    font-weight: bold;
+    text-transform: uppercase; /* Uppercase header text */
+    letter-spacing: 0.5px;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f8f8f8; /* Light grey background for even rows */
+}
+
+table tbody tr:hover {
+    background-color: #f1f1f1; /* Lighter background on row hover */
+}
+
+
+/* Responsive Adjustments */
+
+/* For smaller screens (typically phones) */
+@media (max-width: 768px) {
+    main {
+        padding: 0 15px; /* Reduce padding on smaller screens */
+    }
+
+    /* Adjust participant cards for single column on smaller phones */
+    .participant-card {
+        flex: 1 1 100%; /* One card per row */
+        max-width: 90%; /* To give some side margin */
+        margin: 0 auto; /* Center the card if not 100% wide */
+    }
+}
+
+/* Responsive Table: Allow horizontal scrolling on small screens */
+@media (max-width: 768px) {
+    table {
+        display: block; /* Make table behave like a block element */
+        overflow-x: auto; /* Enable horizontal scrolling for table */
+        white-space: nowrap; /* Prevent content from wrapping inside cells */
+        border: none; /* Remove outer table border, rows will have their own */
+        box-shadow: none; /* Remove table shadow, rows will have their own */
+    }
+
+    /* Hide the original table header on small screens */
+    table thead {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    /* Make table rows act as blocks for vertical stacking */
+    table tr {
+        border: 1px solid #e0e0e0; /* Add border to each row */
+        margin-bottom: 15px; /* Space between transformed rows */
+        display: block;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle shadow for each row */
+        border-radius: 5px;
+    }
+
+    /* Style individual cells */
+    table td {
+        border: none; /* Remove cell borders */
+        border-bottom: 1px solid #eee; /* Add subtle separator between data points */
+        position: relative;
+        padding-left: 50%; /* Make space for pseudo-elements (data-label) */
+        text-align: right; /* Align cell content to the right */
+        display: block; /* Make cells act as blocks */
+        white-space: normal; /* Allow text to wrap within the cell */
+    }
+
+    /* Style the data-label (pseudo-element for responsive headers) */
+    table td::before {
+        content: attr(data-label); /* Get content from data-label attribute */
+        position: absolute;
+        left: 10px; /* Position label to the left */
+        width: 45%; /* Give it some width */
+        padding-right: 10px;
+        white-space: nowrap; /* Keep label on one line */
+        text-align: left; /* Align label text to the left */
+        font-weight: bold;
+        color: #555; /* Color for the labels */
+    }
+
+    /* Remove bottom border from the last cell in a row */
+    table td:last-child {
+        border-bottom: 0;
+    }
+}
+
+/* Even smaller screens (e.g., iPhone 5/SE, smaller Androids) - adjust as needed */
+@media (max-width: 400px) {
+    .participant-card {
+        padding: 15px; /* Slightly less padding on very small screens */
+    }
+
+    table td {
+        padding-left: 45%; /* Adjust padding for data-label on very small screens if labels are long */
+    }
+    table td::before {
+        width: 40%;
+    }
+}
+
+
+/* Basic image responsiveness */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Headings Base Styles */
+h1, h2, h3 {
+    color: #2c3e50; /* A slightly darker blue for headings */
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+/* Paragraphs Base Styles */
+p {
+    margin-bottom: 15px;
+}
+
+/* Basic Reset and Box-Sizing for better layout control */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif; /* A common, readable font */
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6; /* Light background color for the entire page */
+    color: #333; /* Default text color */
+    line-height: 1.6; /* Improve readability of text */
+    overflow-x: hidden; /* Prevent horizontal scrollbar from layout shifts */
+}

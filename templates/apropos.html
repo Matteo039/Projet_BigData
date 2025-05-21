@@ -5,27 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>À propos</title>
     <link rel="stylesheet" href="static/style_global.css">
-    <style>
-        /* Styles pour les cartes de participants */
-        .participants-container {
-            display: flex;
-            justify-content: space-around; /* Répartit l'espace autour des cartes */
-            padding: 20px;
-        }
+    <link rel="stylesheet" href="static/style_apropos.css"
 
-        .participant-card {
-            width: 200px; /* Ajuste la largeur des cartes */
-            border: 1px solid #ccc;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .participant-card img {
-            max-width: 100%; /* L'image ne dépasse pas la largeur de la carte */
-            max-height: 150px; /* Ajuste la hauteur maximale de l'image */
-            margin-bottom: 10px;
-        }
-    </style>
 </head>
 <body>
     {% include 'navbar.html' %}
@@ -73,40 +54,40 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>0 - 12</td>
-                    <td>Bon</td>
-                    <td>Risque minimal.</td>
-                    <td>Profitez de vos activités de plein air !</td>
+                    <td data-label="Indice Qualité Air (IQA)">0 - 12</td>
+                    <td data-label="Niveau de pollution">Bon</td>
+                    <td data-label="Risque pour la santé">Risque minimal.</td>
+                    <td data-label="Recommandations">Profitez de vos activités de plein air !</td>
                 </tr>
                 <tr>
-                    <td>12.1 - 35.4</td>
-                    <td>Modéré</td>
-                    <td>Risque acceptable pour la plupart des gens, mais les personnes sensibles (enfants, personnes âgées, personnes souffrant de maladies respiratoires ou cardiaques) peuvent ressentir une légère irritation.</td>
-                    <td>Les personnes sensibles devraient réduire les efforts prolongés ou intenses à l'extérieur.</td>
+                    <td data-label="Indice Qualité Air (IQA)">12.1 - 35.4</td>
+                    <td data-label="Niveau de pollution">Modéré</td>
+                    <td data-label="Risque pour la santé">Risque acceptable pour la plupart des gens, mais les personnes sensibles (enfants, personnes âgées, personnes souffrant de maladies respiratoires ou cardiaques) peuvent ressentir une légère irritation.</td>
+                    <td data-label="Recommandations">Les personnes sensibles devraient réduire les efforts prolongés ou intenses à l'extérieur.</td>
                 </tr>
                 <tr>
-                    <td>35.5 - 55.4</td>
-                    <td>Mauvais pour les groupes sensibles</td>
-                    <td>Les personnes sensibles (enfants, personnes âgées, personnes souffrant de maladies respiratoires ou cardiaques) peuvent ressentir des effets plus importants. La population générale n'est pas susceptible d'être affectée.</td>
-                    <td>Les personnes sensibles devraient éviter les efforts prolongés ou intenses à l'extérieur. La population générale devrait réduire les efforts prolongés ou intenses à l'extérieur.</td>
+                    <td data-label="Indice Qualité Air (IQA)">35.5 - 55.4</td>
+                    <td data-label="Niveau de pollution">Mauvais pour les groupes sensibles</td>
+                    <td data-label="Risque pour la santé">Les personnes sensibles (enfants, personnes âgées, personnes souffrant de maladies respiratoires ou cardiaques) peuvent ressentir des effets plus importants. La population générale n'est pas susceptible d'être affectée.</td>
+                    <td data-label="Recommandations">Les personnes sensibles devraient éviter les efforts prolongés ou intenses à l'extérieur. La population générale devrait réduire les efforts prolongés ou intenses à l'extérieur.</td>
                 </tr>
                 <tr>
-                    <td>55.5 - 150.4</td>
-                    <td>Mauvais</td>
-                    <td>Tout le monde peut commencer à ressentir des effets sur la santé ; les personnes sensibles peuvent ressentir des effets plus graves.</td>
-                    <td>Les personnes sensibles devraient éviter tout effort à l'extérieur. La population générale devrait réduire considérablement les efforts prolongés ou intenses à l'extérieur.</td>
+                    <td data-label="Indice Qualité Air (IQA)">55.5 - 150.4</td>
+                    <td data-label="Niveau de pollution">Mauvais</td>
+                    <td data-label="Risque pour la santé">Tout le monde peut commencer à ressentir des effets sur la santé ; les personnes sensibles peuvent ressentir des effets plus graves.</td>
+                    <td data-label="Recommandations">Les personnes sensibles devraient éviter tout effort à l'extérieur. La population générale devrait réduire considérablement les efforts prolongés ou intenses à l'extérieur.</td>
                 </tr>
                 <tr>
-                    <td>150.5 - 250.4</td>
-                    <td>Très mauvais</td>
-                    <td>Risque élevé d'effets sur la santé pour tout le monde.</td>
-                    <td>Tout le monde devrait éviter tout effort à l'extérieur. Les personnes souffrant de maladies cardiaques ou respiratoires, les enfants et les personnes âgées devraient rester à l'intérieur.</td>
+                    <td data-label="Indice Qualité Air (IQA)">150.5 - 250.4</td>
+                    <td data-label="Niveau de pollution">Très mauvais</td>
+                    <td data-label="Risque pour la santé">Risque élevé d'effets sur la santé pour tout le monde.</td>
+                    <td data-label="Recommandations">Tout le monde devrait éviter tout effort à l'extérieur. Les personnes souffrant de maladies cardiaques ou respiratoires, les enfants et les personnes âgées devraient rester à l'intérieur.</td>
                 </tr>
                 <tr>
-                    <td>250.5 - 500+</td>
-                    <td>Dangereux</td>
-                    <td>Risque très élevé d'effets graves sur la santé pour tout le monde.</td>
-                    <td>Tout le monde devrait rester à l'intérieur et éviter toute activité physique. Les personnes souffrant de maladies cardiaques ou respiratoires, les enfants et les personnes âgées devraient rester à l'intérieur et minimiser leur activité physique.</td>
+                    <td data-label="Indice Qualité Air (IQA)">250.5 - 500+</td>
+                    <td data-label="Niveau de pollution">Dangereux</td>
+                    <td data-label="Risque pour la santé">Risque très élevé d'effets graves sur la santé pour tout le monde.</td>
+                    <td data-label="Recommandations">Tout le monde devrait rester à l'intérieur et éviter toute activité physique. Les personnes souffrant de maladies cardiaques ou respiratoires, les enfants et les personnes âgées devraient rester à l'intérieur et minimiser leur activité physique.</td>
                 </tr>
             </tbody>
         </table>

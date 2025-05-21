@@ -7,15 +7,6 @@ body {
     padding-top: 60px;
 }
 
-/* En-tête */
-header {
-    background-color: #6c5ce7;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    font-size: 24px;
-}
-
 /* Contenu principal */
 main {
     max-width: 800px;
@@ -99,4 +90,17 @@ footer {
 }
 .ville:hover rect.bg-text {
     opacity: 0.7;
+}
+
+/* In your CSS file (e.g., static/style_accueil.css) */
+.outremer-inset rect {
+    /* Optional: Style for the border of the inset */
+    /* stroke: #666; */
+    /* stroke-dasharray: 5 5; /* Makes a dashed border */
+}
+
+.outremer-inset text {
+    /* Optional: Style for the text label of the inset */
+    /* font-weight: bold; */
+    /* fill: #333; */
 }
