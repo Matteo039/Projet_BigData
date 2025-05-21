@@ -1,19 +1,5 @@
 /* static/style_apropos.css */
 
-/* Main content area */
-main {
-    max-width: 1200px; /* Limit content width for better readability on large screens */
-    margin: 20px auto; /* Center the main content with some vertical margin */
-    padding: 0 20px; /* Add some horizontal padding to prevent content from touching edges */
-}
-
-/* Specific heading styles for this page */
-h1, h2 {
-    border-bottom: 2px solid #ecf0f1; /* Subtle underline for headings */
-    padding-bottom: 5px;
-}
-
-
 /* Participants Section Styling */
 .participants-container {
     display: flex; /* Use flexbox for a responsive row layout */
@@ -180,13 +166,6 @@ img {
     display: block;
 }
 
-/* Headings Base Styles */
-h1, h2, h3 {
-    color: #2c3e50; /* A slightly darker blue for headings */
-    margin-top: 30px;
-    margin-bottom: 15px;
-}
-
 /* Paragraphs Base Styles */
 p {
     margin-bottom: 15px;
@@ -195,14 +174,4 @@ p {
 /* Basic Reset and Box-Sizing for better layout control */
 *, *::before, *::after {
     box-sizing: border-box;
-}
-
-body {
-    font-family: 'Arial', sans-serif; /* A common, readable font */
-    margin: 0;
-    padding: 0;
-    background-color: #f4f7f6; /* Light background color for the entire page */
-    color: #333; /* Default text color */
-    line-height: 1.6; /* Improve readability of text */
-    overflow-x: hidden; /* Prevent horizontal scrollbar from layout shifts */
 }

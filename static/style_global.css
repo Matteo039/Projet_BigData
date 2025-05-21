@@ -1,6 +1,6 @@
 /* En-tête */
 header {
-    background-color: #6c5ce7;
+    background-color: #6c5ce7; /* Keep your existing header background */
     color: white;
     padding: 20px;
     text-align: center;
@@ -9,9 +9,10 @@ header {
 
 /* Enlever la position fixe */
 nav {
-    background-color: #333;
+    background-color: #f0f0f0; /* A soft, light gray for a clean look */
     text-align: center;
     padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */
 }
 
 /* Centrer les liens */
@@ -28,20 +29,39 @@ nav ul li {
 }
 
 nav ul li a {
-    color: white;
+    color: #34495e; /* A dark, professional blue-gray for the links */
     text-decoration: none;
     font-weight: bold;
     padding: 10px 15px;
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
 }
 
 nav ul li a:hover {
-    background-color: #555;
+    background-color: #e0e0e0; /* Slightly darker gray on hover */
+    color: #2980b9; /* A vibrant blue for the text on hover, suggesting interaction */
     border-radius: 5px;
 }
 
-/* Headings Base Styles */
-h1, h2, h3 {
-    color: #2c3e50; /* A slightly darker blue for headings */
-    margin-top: 30px;
-    margin-bottom: 15px;
+/* Pied de page */
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #6c5ce7;
+    color: white;
+    margin-top: 20px;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Main content area */
+main {
+    max-width: 1200px; /* Limit content width for better readability on large screens */
+    margin: 20px auto; /* Center the main content with some vertical margin */
+    padding: 0 20px; /* Add some horizontal padding to prevent content from touching edges */
 }
