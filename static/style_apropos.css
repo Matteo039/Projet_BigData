@@ -1,74 +1,79 @@
-/* static/style_apropos.css */
-
-/* Participants Section Styling */
 .participants-container {
-    display: flex; /* Use flexbox for a responsive row layout */
-    flex-wrap: wrap; /* Allow cards to wrap to the next line on smaller screens */
-    justify-content: center; /* Center cards horizontally */
-    gap: 20px; /* Space between participant cards */
-    margin-top: 25px;
-    margin-bottom: 40px; /* Add space below the participant section */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px; /* Légèrement plus d'espace entre les cartes */
+    margin-top: 30px; /* Plus de marge au-dessus */
+    margin-bottom: 50px; /* Plus de marge en dessous */
 }
 
 .participant-card {
-    background-color: #ffffff; /* White background for cards */
-    border: 1px solid #ddd; /* Light border */
-    border-radius: 8px; /* Slightly rounded corners */
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    flex: 1 1 calc(50% - 20px); /* On larger screens (e.g., tablet), 2 cards per row. '20px' accounts for the gap. */
-    max-width: 380px; /* A reasonable max width for individual cards */
-    min-width: 280px; /* Minimum width before wrapping */
-    text-align: center; /* Center text inside the card */
-    transition: transform 0.2s ease-in-out; /* Smooth hover effect */
+    background-color: var(--card-background); /* Utilise la variable pour le fond blanc */
+    border: 1px solid var(--border-light); /* Bordure plus douce */
+    border-radius: 12px; /* Bords plus arrondis pour s'harmoniser */
+    padding: 25px; /* Plus de padding */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); /* Ombre plus douce et étendue */
+    flex: 1 1 calc(50% - 25px); /* Adapte au nouveau gap */
+    max-width: 420px; /* Augmenter légèrement la largeur maximale pour plus de contenu */
+    min-width: 300px; /* Augmenter le min-width si le contenu le demande */
+    text-align: center;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Ajout transition shadow */
 }
 
 .participant-card:hover {
-    transform: translateY(-5px); /* Lift card slightly on hover */
+    transform: translateY(-8px); /* Soulève davantage la carte au survol */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Ombre plus prononcée au survol */
 }
 
 .participant-card h3 {
-    color: #3498db; /* Blue heading for participant names */
+    font-family: 'Poppins', sans-serif; /* Utilise la police des titres */
+    color: var(--primary-dark); /* Utilise une couleur plus profonde de la palette primaire */
     margin-top: 0;
-    margin-bottom: 10px;
+    margin-bottom: 12px; /* Légèrement plus de marge */
+    font-size: 1.4em; /* Taille ajustée */
 }
 
 .participant-card p {
-    font-size: 0.95em;
-    color: #555;
+    font-size: 1em; /* Légèrement plus grand pour la lisibilité */
+    color: var(--text-dark); /* Couleur de texte harmonisée */
+    line-height: 1.5; /* Espacement des lignes amélioré */
 }
 
 /* Table Styling (Échelle de dangerosité) */
 table {
-    width: 100%; /* Make table take full width */
-    border-collapse: collapse; /* Collapse borders for a cleaner look */
-    margin-top: 20px;
-    margin-bottom: 40px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); /* Subtle shadow for the table */
-    background-color: #fff; /* White background for the table */
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px; /* Plus de marge */
+    margin-bottom: 50px; /* Plus de marge */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Ombre harmonisée */
+    background-color: var(--card-background); /* Fond blanc */
+    border-radius: 10px; /* Bords arrondis pour le tableau entier */
+    overflow: hidden; /* Important pour que les bords arrondis s'appliquent aux cellules */
 }
 
 table th,
 table td {
-    border: 1px solid #e0e0e0; /* Light grey borders */
-    padding: 12px 15px; /* Ample padding for readability */
-    text-align: left; /* Align text to the left */
+    border: 1px solid var(--border-light); /* Bordures plus douces */
+    padding: 14px 18px; /* Plus de padding */
+    text-align: left;
 }
 
 table th {
-    background-color: #3498db; /* Blue background for table headers */
-    color: white; /* White text for headers */
-    font-weight: bold;
-    text-transform: uppercase; /* Uppercase header text */
-    letter-spacing: 0.5px;
+    background-color: var(--table-header-bg); /* Utilise la variable pour l'en-tête du tableau */
+    color: white;
+    font-weight: 700; /* Plus gras */
+    text-transform: uppercase;
+    letter-spacing: 0.8px; /* Plus d'espacement pour les lettres */
+    font-size: 0.95em; /* Légèrement plus grand */
+    font-family: 'Poppins', sans-serif; /* Police des titres */
 }
 
 table tbody tr:nth-child(even) {
-    background-color: #f8f8f8; /* Light grey background for even rows */
+    background-color: var(--table-row-even-bg); /* Fond léger pour les lignes paires */
 }
 
 table tbody tr:hover {
-    background-color: #f1f1f1; /* Lighter background on row hover */
+    background-color: var(--table-row-hover-bg); /* Fond plus clair au survol */
 }
 
 
@@ -76,69 +81,79 @@ table tbody tr:hover {
 
 /* For smaller screens (typically phones) */
 @media (max-width: 768px) {
-    main {
-        padding: 0 15px; /* Reduce padding on smaller screens */
-    }
+    /* main padding est déjà géré globalement */
+    /* main {
+        padding: 0 15px;
+    } */
 
     /* Adjust participant cards for single column on smaller phones */
+    .participants-container {
+        gap: 20px; /* Ajuste le gap pour mobile */
+    }
+
     .participant-card {
-        flex: 1 1 100%; /* One card per row */
-        max-width: 90%; /* To give some side margin */
-        margin: 0 auto; /* Center the card if not 100% wide */
+        flex: 1 1 95%; /* Prend presque toute la largeur sur mobile */
+        max-width: 95%; /* S'assure qu'il ne dépasse pas */
+        padding: 20px; /* Padding ajusté pour mobile */
+        border-radius: 0; /* Enlève les bords arrondis sur mobile pour un look plein écran */
+        box-shadow: none; /* Enlève l'ombre sur mobile */
+        margin: 0 auto; /* Centrer si nécessaire */
+    }
+
+    .participant-card h3 {
+        font-size: 1.2em; /* Réduit la taille des titres de carte sur mobile */
     }
 }
 
 /* Responsive Table: Allow horizontal scrolling on small screens */
 @media (max-width: 768px) {
     table {
-        display: block; /* Make table behave like a block element */
-        overflow-x: auto; /* Enable horizontal scrolling for table */
-        white-space: nowrap; /* Prevent content from wrapping inside cells */
-        border: none; /* Remove outer table border, rows will have their own */
-        box-shadow: none; /* Remove table shadow, rows will have their own */
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        border: none;
+        box-shadow: none;
+        border-radius: 0; /* Enlève les bords arrondis pour le tableau sur mobile */
     }
 
-    /* Hide the original table header on small screens */
     table thead {
         position: absolute;
         top: -9999px;
         left: -9999px;
     }
 
-    /* Make table rows act as blocks for vertical stacking */
     table tr {
-        border: 1px solid #e0e0e0; /* Add border to each row */
-        margin-bottom: 15px; /* Space between transformed rows */
+        border: 1px solid var(--border-light); /* Utilise la variable de bordure */
+        margin-bottom: 15px;
         display: block;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Subtle shadow for each row */
-        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        border-radius: 8px; /* Bords légèrement arrondis pour chaque ligne transformée */
+        background-color: var(--card-background); /* Fond blanc pour chaque ligne */
     }
 
-    /* Style individual cells */
     table td {
-        border: none; /* Remove cell borders */
-        border-bottom: 1px solid #eee; /* Add subtle separator between data points */
+        border: none;
+        border-bottom: 1px solid var(--border-light); /* Utilise la variable de bordure */
         position: relative;
-        padding-left: 50%; /* Make space for pseudo-elements (data-label) */
-        text-align: right; /* Align cell content to the right */
-        display: block; /* Make cells act as blocks */
-        white-space: normal; /* Allow text to wrap within the cell */
+        padding-left: 50%;
+        text-align: right;
+        display: block;
+        white-space: normal;
+        font-size: 0.95em; /* Légèrement plus petit pour les cellules sur mobile */
     }
 
-    /* Style the data-label (pseudo-element for responsive headers) */
     table td::before {
-        content: attr(data-label); /* Get content from data-label attribute */
+        content: attr(data-label);
         position: absolute;
-        left: 10px; /* Position label to the left */
-        width: 45%; /* Give it some width */
+        left: 15px; /* Plus d'espace à gauche pour le label */
+        width: 40%; /* Ajuste la largeur du label */
         padding-right: 10px;
-        white-space: nowrap; /* Keep label on one line */
-        text-align: left; /* Align label text to the left */
-        font-weight: bold;
-        color: #555; /* Color for the labels */
+        white-space: nowrap;
+        text-align: left;
+        font-weight: 700; /* Plus gras */
+        color: var(--text-medium); /* Couleur du label */
     }
 
-    /* Remove bottom border from the last cell in a row */
     table td:last-child {
         border-bottom: 0;
     }
@@ -147,17 +162,16 @@ table tbody tr:hover {
 /* Even smaller screens (e.g., iPhone 5/SE, smaller Androids) - adjust as needed */
 @media (max-width: 400px) {
     .participant-card {
-        padding: 15px; /* Slightly less padding on very small screens */
+        padding: 18px; /* Ajuste légèrement le padding sur très petits écrans */
     }
 
     table td {
-        padding-left: 45%; /* Adjust padding for data-label on very small screens if labels are long */
+        padding-left: 48%; /* Ajuste padding pour data-label si labels sont longs */
     }
     table td::before {
-        width: 40%;
+        width: 45%;
     }
 }
-
 
 /* Basic image responsiveness */
 img {

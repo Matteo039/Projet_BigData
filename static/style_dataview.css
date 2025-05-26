@@ -1,0 +1,65 @@
+main h2 {
+    font-family: 'Poppins', sans-serif; /* Utilise la police des titres */
+    font-weight: 600; /* Moins gras que h1, mais toujours distinct */
+    color: var(--list-heading-color); /* Utilise la nouvelle variable de couleur (que vous devrez ajouter à :root si ce n'est pas fait) */
+    margin-bottom: 15px; /* Marge légèrement augmentée pour aérer */
+    font-size: 1.8em; /* Taille ajustée pour un meilleur équilibre */
+    text-align: center; /* Centré par défaut pour ces listes de classement */
+}
+
+/* ----------------------------------- */
+/* Styles spécifiques pour les listes (ul) de classement */
+/* ----------------------------------- */
+main ul {
+    list-style: none; /* TRÈS IMPORTANT : Enlève les puces par défaut des listes */
+    padding: 0; /* Supprime le padding par défaut des listes (souvent un décalage à gauche) */
+    margin: 25px auto; /* Légèrement plus de marge verticale pour mieux les séparer */
+    max-width: 650px; /* Légèrement plus large si nécessaire */
+
+    /* Améliorations visuelles pour le conteneur de liste */
+    background-color: var(--card-background); /* Utilise la variable pour le fond blanc des cartes */
+    border: 1px solid var(--border-light); /* Utilise la variable pour la bordure légère */
+    border-radius: 10px; /* Bords plus arrondis pour s'harmoniser */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06); /* Une ombre plus douce */
+}
+
+/* ----------------------------------- */
+/* Styles spécifiques pour chaque élément de liste (li) */
+/* ----------------------------------- */
+main ul li {
+    padding: 15px 20px; /* Plus d'espace interne pour chaque élément de la liste */
+    border-bottom: 1px solid var(--border-light); /* Une fine ligne de séparation entre les éléments, avec la couleur de bordure globale */
+    color: var(--list-item-text); /* Couleur de texte pour les éléments de la liste (que vous devrez ajouter à :root si ce n'est pas fait) */
+    font-size: 1.15em; /* Taille de police légèrement plus grande pour la lisibilité des données */
+    display: flex; /* Utilise flexbox pour un contrôle d'alignement */
+    justify-content: center; /* Centre le texte dans l'élément li */
+    align-items: center; /* Centre verticalement le texte dans l'élément li */
+    text-align: center; /* Assure que le texte est centré même si flexbox est utilisé */
+}
+
+/* Pas de bordure sous le dernier élément de chaque liste */
+main ul li:last-child {
+    border-bottom: none;
+}
+
+/* ----------------------------------- */
+/* Media Queries pour les petits écrans (mobiles) pour dataview */
+/* ----------------------------------- */
+@media (max-width: 768px) {
+    main h2 {
+        font-size: 1.4em; /* Réduit la taille des h2 sur mobile */
+        margin-bottom: 8px;
+    }
+
+    main ul {
+        margin: 15px auto; /* Réduit la marge verticale sur mobile */
+        max-width: 95%; /* Permet à la liste de prendre plus de largeur sur les petits écrans */
+        border-radius: 0; /* Enlève les bords arrondis pour un look plein écran sur mobile */
+        box-shadow: none; /* Enlève l'ombre sur mobile pour un look plus "natif" */
+    }
+
+    main ul li {
+        padding: 10px 12px; /* Réduit le padding pour économiser de l'espace sur mobile */
+        font-size: 1em; /* Ajuste la taille de la police pour les éléments de liste */
+    }
+}

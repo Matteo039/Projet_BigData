@@ -1,77 +1,114 @@
-/* Liens */
 a {
-    color: #6c5ce7;
+    color: var(--primary-color); /* Utilisation de la couleur primaire pour les liens */
     text-decoration: none;
+    transition: color 0.3s ease; /* Transition douce pour l'effet de survol */
 }
 
 a:hover {
-    text-decoration: underline;
+    color: var(--primary-dark); /* Assombrir la couleur au survol */
+    text-decoration: underline; /* Garde le soulignement pour le survol si désiré */
 }
 
-/* CARTE //////////////////////////////////////////////////////
+/* CARTE ////////////////////////////////////////////////////// */
 
 /* Conteneur de la carte */
 .carte-container {
     text-align: center;
-    margin: 20px auto;
-    max-width: 600px;
+    margin: 30px auto; /* Légèrement plus de marge */
+    max-width: 650px; /* Augmenter légèrement la largeur maximale si la carte est plus large */
+    padding: 20px; /* Ajouter un padding pour aérer */
+    background-color: var(--card-background); /* Fond blanc comme les autres cartes */
+    border-radius: 12px; /* Bords plus arrondis */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); /* Ombre douce et étendue */
 }
 
 /* Carte SVG */
 .carte-france {
     width: 100%;
-    max-width: 500px;
+    max-width: 550px; /* Augmenter si nécessaire */
     height: auto;
-    border: 2px solid #6c5ce7;
+    border: 2px solid var(--border-light); /* Bordure plus douce */
     border-radius: 10px;
-    background-color: #f8f9fa;
+    background-color: var(--background-light); /* Fond très léger pour la carte elle-même */
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.05); /* Petite ombre interne pour la carte */
 }
 
 /* Points des villes */
 .ville circle {
-    fill: #6c5ce7;
+    fill: var(--map-point-fill); /* Utilisation de la variable pour la couleur des points */
     stroke: white;
-    stroke-width: 2px;
+    stroke-width: 2.5px; /* Légèrement plus épais pour mieux ressortir */
     cursor: pointer;
-    transition: fill 0.2s ease-in-out;
+    transition: fill 0.3s ease-in-out, transform 0.2s ease-in-out; /* Ajout d'une transition pour le transform */
 }
 
 /* Effet au survol */
 .ville:hover circle {
-    fill: #e17055;
+    fill: var(--map-point-hover-fill); /* Nouvelle couleur de survol (accent-color ou une autre) */
+    transform: scale(1.1); /* Agrandir légèrement le cercle au survol */
 }
 
 /* Texte des villes */
 .ville text {
-    font-size: 14px;
-    fill: #FFFFFF;
-    font-weight: bold;
+    font-size: 13px; /* Légèrement plus petit pour la lisibilité sur la carte */
+    fill: white; /* Reste blanc */
+    font-weight: 600; /* Moins gras que bold mais distinct */
     visibility: hidden;
-    transition: visibility 0.2s ease-in-out;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; /* Transition pour l'opacité et la visibilité */
 }
 .ville rect.bg-text {
-    fill: black;
+    fill: var(--text-dark); /* Fond du texte en gris foncé */
     opacity: 0;
+    border-radius: 3px; /* Bords légèrement arrondis pour le fond de texte */
     transition: opacity 0.3s ease-in-out;
 }
 
 /* Affichage du texte au survol */
 .ville:hover text {
     visibility: visible;
+    opacity: 1; /* S'assurer que le texte est entièrement opaque */
 }
 .ville:hover rect.bg-text {
-    opacity: 0.7;
+    opacity: 0.85; /* Opacité légèrement plus élevée pour le fond du texte */
 }
 
 /* In your CSS file (e.g., static/style_accueil.css) */
 .outremer-inset rect {
     /* Optional: Style for the border of the inset */
-    /* stroke: #666; */
+    stroke: var(--border-light); /* Utilise la couleur de bordure globale */
+    stroke-width: 1px;
     /* stroke-dasharray: 5 5; /* Makes a dashed border */
+    fill: var(--background-light); /* Fond léger pour les DOM-TOM */
+    border-radius: 5px; /* Légèrement arrondi */
 }
 
 .outremer-inset text {
     /* Optional: Style for the text label of the inset */
-    /* font-weight: bold; */
-    /* fill: #333; */
+    font-weight: 600; /* Moins gras que bold */
+    fill: var(--text-medium); /* Couleur de texte moyenne */
+    font-size: 11px; /* Plus petit pour les labels d'outre-mer */
+}
+
+/* --- Media Queries pour les petits écrans (mobiles) pour la carte --- */
+@media (max-width: 768px) {
+    .carte-container {
+        margin: 20px auto;
+        padding: 15px;
+        max-width: 95%; /* Prend plus de largeur sur mobile */
+        border-radius: 0; /* Enlève les bords arrondis */
+        box-shadow: none; /* Enlève l'ombre */
+    }
+
+    .carte-france {
+        border-radius: 0; /* Enlève les bords arrondis */
+        border: none; /* Pas de bordure sur mobile pour la carte elle-même */
+    }
+
+    .ville circle {
+        stroke-width: 2px; /* Réduire légèrement l'épaisseur du trait */
+    }
+
+    .ville text {
+        font-size: 12px; /* Réduire légèrement la taille du texte des villes */
+    }
 }

@@ -1,21 +1,76 @@
-/* En-tête */
+:root {
+    --primary-color: #4682B4; /* Bleu Acier - Thème principal (ancien #6c5ce7) */
+    --primary-dark: #3A668C; /* Bleu Acier foncé pour le survol */
+    --accent-color: #5F9EA0; /* Cadet Blue - Couleur d'accent (pour les liens actifs/hover) */
+    --background-light: #F8F9FA; /* Gris très clair pour les arrière-plans (ancien #f5f7fa) */
+    --card-background: #FFFFFF; /* Blanc pur pour les cartes (main, form, chart) */
+    --text-dark: #343A40; /* Gris foncé pour le texte principal (ancien #333) */
+    --text-medium: #6C757D; /* Gris moyen pour le texte secondaire/footer */
+    --border-light: #DEE2E6; /* Gris clair pour les bordures (ancien #ccc) */
+    --error-color: #DC3545; /* Rouge pour les erreurs */
+    --info-color: #17A2B8; /* Cyan pour les infos */
+    --list-heading-color: #4A69BD; /* Un bleu distinct pour les h2 de liste */
+    --list-item-text: #555555; /* Couleur du texte des éléments de liste */
+    --map-point-fill: var(--primary-color); /* Nouvelle variable pour la couleur de remplissage des points de la carte */
+    --map-point-hover-fill: var(--accent-color); /* Nouvelle variable pour le survol des points de la carte */
+    --table-header-bg: var(--primary-color); /* Couleur pour l'en-tête du tableau */
+    --table-row-even-bg: #F0F2F5; /* Fond léger pour les lignes paires du tableau */
+    --table-row-hover-bg: #E9ECEF; /* Fond au survol pour les lignes du tableau */
+}
+
+body {
+    font-family: 'Open Sans', sans-serif; /* Nouvelle police principale */
+    background-color: var(--background-light); /* Utilisation de la variable */
+    margin: 0;
+    padding: 0;
+    color: var(--text-dark); /* Utilisation de la variable */
+    text-align: center;
+    line-height: 1.6;
+    overflow-x: hidden;
+
+    /* NOUVEAUX STYLES POUR LE STICKY FOOTER */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ----------------------------------- */
+/* En-tête (header) - Adapté */
+/* ----------------------------------- */
 header {
-    background-color: #6c5ce7; /* Keep your existing header background */
+    background-color: var(--primary-color); /* Utilisation de la nouvelle couleur principale */
     color: white;
-    padding: 20px;
+    padding: 25px 20px; /* Légèrement plus de padding pour aérer */
     text-align: center;
-    font-size: 24px;
+    font-size: 26px; /* Ajustement de la taille */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre plus douce */
 }
 
-/* Enlever la position fixe */
+header h1 { /* Style pour le h1 à l'intérieur du header */
+    font-family: 'Poppins', sans-serif; /* Police pour les titres */
+    font-weight: 700; /* Plus gras */
+    margin: 0; /* Assure pas de marge par défaut */
+    font-size: 1.5em; /* Ajusté par rapport à la taille du header */
+}
+
+/* ----------------------------------- */
+/* Navigation principale (nav) - Adapté */
+/* ----------------------------------- */
 nav {
-    background-color: #f0f0f0; /* A soft, light gray for a clean look */
+    background-color: var(--card-background); /* Blanc pur pour la nav */
     text-align: center;
-    padding: 10px 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow for depth */
+    padding: 12px 0; /* Plus de padding vertical */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); /* Ombre plus douce */
+    position: relative;
+    z-index: 100; /* Assure que la nav est au-dessus du main */
 }
 
-/* Centrer les liens */
+/* Masquer le bouton hamburger par défaut sur les grands écrans */
+.hamburger-menu {
+    display: none;
+}
+
+/* Liste des liens de navigation */
 nav ul {
     list-style: none;
     padding: 0;
@@ -24,44 +79,67 @@ nav ul {
     justify-content: center;
 }
 
+/* Éléments de la liste (chaque lien) */
 nav ul li {
-    margin: 0 15px;
+    margin: 0 20px; /* Marge légèrement augmentée */
 }
 
+/* Styles des liens de navigation */
 nav ul li a {
-    color: #34495e; /* A dark, professional blue-gray for the links */
+    color: var(--text-dark); /* Couleur du texte des liens */
     text-decoration: none;
-    font-weight: bold;
-    padding: 10px 15px;
-    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    font-weight: 600; /* Moins gras que bold mais distinct */
+    padding: 10px 18px; /* Espace autour du texte des liens */
+    transition: all 0.3s ease;
+    border-radius: 6px; /* Bords légèrement arrondis */
 }
 
+/* Effet de survol des liens */
 nav ul li a:hover {
-    background-color: #e0e0e0; /* Slightly darker gray on hover */
-    color: #2980b9; /* A vibrant blue for the text on hover, suggesting interaction */
-    border-radius: 5px;
+    background-color: var(--primary-color); /* Couleur primaire au survol */
+    color: white; /* Texte blanc au survol */
+}
+/* Style pour le lien actif (page courante) */
+nav ul li a.active {
+    background-color: var(--accent-color); /* Couleur d'accent pour le lien actif */
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Pied de page */
+
+/* ----------------------------------- */
+/* Zone de Contenu Principale (main) - Adapté */
+/* ----------------------------------- */
+main {
+    max-width: 1200px;
+    margin: 30px auto; /* Plus de marge supérieure/inférieure */
+    padding: 30px;
+    background-color: var(--card-background); /* Utilisation de la variable */
+    border-radius: 10px; /* Bords légèrement plus arrondis */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); /* Ombre plus douce et plus étendue */
+    text-align: left;
+    flex-grow: 1;
+}
+
+/* Titre h1 dans le main (ex: "Données de Toutes les villes") */
+main h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 2.5em; /* Taille du titre augmentée */
+    color: var(--primary-dark); /* Couleur sombre de la palette primaire */
+    text-align: center;
+    margin-bottom: 40px; /* Plus d'espace sous le titre */
+}
+
+
+/* ----------------------------------- */
+/* Pied de Page (footer) - Adapté */
+/* ----------------------------------- */
 footer {
     text-align: center;
-    padding: 15px;
-    background-color: #6c5ce7;
+    padding: 25px; /* Plus de padding */
+    background-color: var(--primary-color); /* Utilisation de la nouvelle couleur principale */
     color: white;
-    margin-top: 20px;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f5f7fa;
-    margin: 0;
-    padding: 0;
-    color: #333;
-}
-
-/* Main content area */
-main {
-    max-width: 1200px; /* Limit content width for better readability on large screens */
-    margin: 20px auto; /* Center the main content with some vertical margin */
-    padding: 0 20px; /* Add some horizontal padding to prevent content from touching edges */
+    font-size: 0.9em;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }

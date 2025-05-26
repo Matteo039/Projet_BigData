@@ -7,12 +7,14 @@
     <list default="true" id="8eb2b5e7-504d-430b-9db4-64954b6f6728" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/style_accueil.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style_accueil.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/style_apropos.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style_apropos.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/style_dataview.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style_dataview.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/style_global.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style_global.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/style_ville.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style_ville.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/apropos.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/apropos.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/city.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/city.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/dataview.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dataview.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navbar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,18 +44,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.app.executor": "Run",
-    "Python.models.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "V3-du-back",
-    "last_opened_file_path": "C:/Users/matte/OneDrive/Documents/Prepa/E4/GrossesDonnées - BigData/MeteoGulli",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;Python.models.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;V3-du-back&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/matte/OneDrive/Documents/Prepa/E4/GrossesDonnées - BigData/MeteoGulli&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Python.app">
     <configuration name="Projet_BigData" type="PythonConfigurationType" factoryName="Python">
       <module name="Projet_BigData" />
@@ -130,8 +133,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PY-241.18034.82" />
-        <option value="bundled-python-sdk-975db3bf15a3-2767605e8bc2-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.18034.82" />
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-PY-243.23654.177" />
+        <option value="bundled-python-sdk-91d3a02ef49d-43b77aa2d136-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.23654.177" />
       </set>
     </attachedChunks>
   </component>
@@ -144,6 +147,7 @@
       <option name="presentableId" value="Default" />
       <updated>1743576727669</updated>
       <workItem from="1743576728835" duration="82000" />
+      <workItem from="1747901284307" duration="11000" />
     </task>
     <servers />
   </component>

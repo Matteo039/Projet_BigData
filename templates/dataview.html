@@ -4,26 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voir les données</title>
-    <link rel="stylesheet" href="static/style_ville.css">
     <link rel="stylesheet" href="static/style_global.css">
+    <link rel="stylesheet" href="static/style_dataview.css">
 </head>
 <body>
-    {% include 'navbar.html' %}
-    <h1>Classement des villes le 31 décembre 2024</h1>
+    {% include 'navbar.html' %} {# Ceci inclut votre header, nav ET le script JS #}
 
-    <h2>Top 3 des villes avec la pire qualité de l'air :</h2>
-    <ul>
-        {% for ville, valeur_moyenne in top_3_cities %}
-            <li>{{ ville }}: {{ valeur_moyenne }}</li>
-        {% endfor %}
-    </ul>
+    <main>
+        <h1>Classement des villes le 31 décembre 2024</h1>
 
-    <h2>Top 3 des villes avec la pire meilleure de l'air :</h2>
-    <ul>
-        {% for ville, valeur_moyenne in bottom_3_cities %}
-            <li>{{ ville }}: {{ valeur_moyenne }}</li>
-        {% endfor %}
-    </ul>
+        <h2>Top 3 des villes avec la pire qualité de l'air :</h2>
+        <ul>
+            {% for ville, valeur_moyenne in top_3_cities %}
+                <li>{{ ville }}: {{ valeur_moyenne }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Top 3 des villes avec la meilleure qualité de l'air :</h2> {# Correction ici, 'pire meilleure' n'est pas correct #}
+        <ul>
+            {% for ville, valeur_moyenne in bottom_3_cities %}
+                <li>{{ ville }}: {{ valeur_moyenne }}</li>
+            {% endfor %}
+        </ul>
+    </main>
     {% include 'footer.html' %}
+
+    {# LE SCRIPT JS DU MENU HAMBURGER EST DÉJÀ DANS navbar.html, DONC PAS BESOIN DE LE RAJOUTER ICI #}
 </body>
 </html>

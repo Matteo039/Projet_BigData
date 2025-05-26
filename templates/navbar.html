@@ -2,6 +2,11 @@
     <h1>Bienvenue sur l'Application de Traitement de Données Météorologiques</h1>
 </header>
 <nav>
+    <button class="hamburger-menu" aria-label="Ouvrir le menu de navigation">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </button>
     <ul>
         <li><a href="/">Accueil</a></li>
         <li><a href="/dataview">Voir les données</a></li>
@@ -9,3 +14,27 @@
         <li><a href="/about">À propos</a></li>
     </ul>
 </nav>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const hamburgerButton = document.querySelector('.hamburger-menu');
+        const navUl = document.querySelector('nav ul');
+
+        if (hamburgerButton && navUl) {
+            hamburgerButton.addEventListener('click', function() {
+                navUl.classList.toggle('active');
+                hamburgerButton.classList.toggle('active'); // Pour l'animation du bouton
+            });
+
+            // Facultatif : Fermer le menu si on clique sur un lien (utile pour les Single Page Applications)
+            navUl.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    // Vérifie si le menu est ouvert avant de le fermer
+                    if (navUl.classList.contains('active')) {
+                        navUl.classList.remove('active');
+                        hamburgerButton.classList.remove('active');
+                    }
+                });
+            });
+        }
+    });
+</script>
