@@ -81,8 +81,18 @@
                     },
                     options: {
                         scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: "{{ 'Heures' if selected_intervalle == 'heure' else 'Jours' if selected_intervalle == 'jour' else 'Mois' }}"
+                                }
+                            },
                             y: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: "IQA - Indice Qualité de l'Air"
+                                }
                             }
                         }
                     }

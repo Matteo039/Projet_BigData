@@ -9,6 +9,10 @@ a:hover {
     text-decoration: underline; /* Garde le soulignement pour le survol si désiré */
 }
 
+p {
+    text-align: center;
+}
+
 /* CARTE ////////////////////////////////////////////////////// */
 
 /* Conteneur de la carte */

@@ -16,14 +16,16 @@
         <h2>Top 3 des villes avec la pire qualité de l'air :</h2>
         <ul>
             {% for ville, valeur_moyenne in top_3_cities %}
-                <li>{{ ville }}: {{ valeur_moyenne }}</li>
+{#                <li>{{ ville }}: {{ valeur_moyenne }}</li>#}
+                <li>{{ ville }}: {{ "%.2f"|format(valeur_moyenne) }}</li>
             {% endfor %}
         </ul>
 
         <h2>Top 3 des villes avec la meilleure qualité de l'air :</h2> {# Correction ici, 'pire meilleure' n'est pas correct #}
         <ul>
             {% for ville, valeur_moyenne in bottom_3_cities %}
-                <li>{{ ville }}: {{ valeur_moyenne }}</li>
+{#                <li>{{ ville }}: {{ valeur_moyenne }}</li>#}
+                <li>{{ ville }}: {{ "%.2f"|format(valeur_moyenne) }}</li>
             {% endfor %}
         </ul>
     </main>
