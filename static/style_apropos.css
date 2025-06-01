@@ -189,3 +189,153 @@ p {
 *, *::before, *::after {
     box-sizing: border-box;
 }
+
+/* --- Media Queries pour les petits écrans (mobiles) pour la carte --- */
+@media (max-width: 768px) {
+    /* Cachez le menu de navigation par défaut sur mobile */
+    nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        background-color: var(--card-background); /* Fond blanc pour la nav mobile */
+        position: absolute;
+        top: 100%;
+        left: 0;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        padding-bottom: 10px; /* Petit padding en bas */
+    }
+
+    /* Affiche le menu lorsque la classe 'active' est ajoutée par JavaScript */
+    nav ul.active {
+        display: flex;
+    }
+
+    /* Styles pour chaque élément de la liste (li) sur mobile */
+    nav ul li {
+        margin: 0;
+        width: 100%;
+        border-bottom: 1px solid var(--border-light); /* Séparateur léger */
+    }
+
+    nav ul li:last-child {
+        border-bottom: none;
+    }
+
+    /* Styles pour les liens individuels (a) sur mobile */
+    nav ul li a {
+        padding: 15px 20px;
+        display: block;
+        border-radius: 0; /* Pas de bords arrondis sur les liens individuels mobiles */
+    }
+
+    nav ul li a:hover {
+        background-color: var(--background-light); /* Fond léger au survol */
+        color: var(--primary-color);
+    }
+
+    nav ul li a.active {
+        background-color: var(--accent-color);
+        color: white;
+    }
+
+
+    /* Styles du bouton hamburger */
+    .hamburger-menu {
+        display: block;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+        position: absolute;
+        top: 50%;
+        left: 20px;
+        transform: translateY(-50%);
+        z-index: 1001;
+    }
+
+    /* Styles pour les barres de l'icône hamburger */
+    .hamburger-menu .bar {
+        display: block;
+        width: 28px; /* Légèrement plus large */
+        height: 4px; /* Plus épais */
+        background-color: var(--text-dark); /* Couleur des barres */
+        margin: 6px 0; /* Espace entre les barres */
+        transition: all 0.3s ease;
+        border-radius: 2px; /* Bords légèrement arrondis */
+    }
+
+    /* Animation du bouton hamburger en "X" quand la classe 'active' est ajoutée */
+    .hamburger-menu.active .bar:nth-child(1) {
+        transform: translateY(10px) rotate(45deg); /* Ajusté pour l'épaisseur */
+    }
+
+    .hamburger-menu.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger-menu.active .bar:nth-child(3) {
+        transform: translateY(-10px) rotate(-45deg); /* Ajusté pour l'épaisseur */
+    }
+
+    /* Ajustements pour la zone de contenu principale (main) sur mobile */
+    main {
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    main h1 {
+        font-size: 1.8em;
+        margin-bottom: 30px;
+    }
+
+    /* Ajustements pour le formulaire sur mobile */
+    form {
+        flex-direction: column; /* Empiler les éléments */
+        padding: 25px;
+        gap: 20px;
+        border-radius: 0;
+        box-shadow: none;
+        margin: 20px auto;
+    }
+
+    form label {
+        width: 100%; /* Labels prennent toute la largeur */
+        margin-bottom: 5px;
+        text-align: left; /* Aligner les labels à gauche */
+    }
+
+    .form-field-group {
+        flex-direction: column; /* Empiler input/select et icône */
+        width: 100%;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    form input[type="date"],
+    form select {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .radio-options {
+        flex-direction: column; /* Empiler les radios sur mobile */
+        align-items: flex-start;
+        gap: 10px;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .radio-options label {
+        margin-left: 0;
+    }
+
+    /* Ajustements pour le pied de page (footer) sur mobile */
+    footer {
+        padding: 20px;
+        margin-top: 20px;
+    }
+}

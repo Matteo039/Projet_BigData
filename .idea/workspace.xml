@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8eb2b5e7-504d-430b-9db4-64954b6f6728" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/templates/apropos.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/apropos.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/style_accueil.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style_accueil.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/style_apropos.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style_apropos.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/style_dataview.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style_dataview.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/style_global.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/style_global.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navbar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +149,7 @@
       <workItem from="1747901284307" duration="11000" />
       <workItem from="1748501827288" duration="1389000" />
       <workItem from="1748623005016" duration="1190000" />
-      <workItem from="1748771636412" duration="710000" />
+      <workItem from="1748771636412" duration="1723000" />
     </task>
     <servers />
   </component>

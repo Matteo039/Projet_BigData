@@ -143,3 +143,83 @@ footer {
     font-size: 0.9em;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
+
+/* Menu hamburger visible sur petits écrans */
+@media (max-width: 768px) {
+    .hamburger-menu {
+        display: block;
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        background: none;
+        border: none;
+        font-size: 1em;
+        color: var(--text-dark);
+        cursor: pointer;
+        z-index: 101;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        background-color: var(--card-background);
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        padding: 10px 0;
+    }
+
+    nav ul.show {
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    nav ul li a {
+        padding: 10px 20px;
+        display: block;
+    }
+
+    header {
+        font-size: 22px;
+        padding: 20px 10px;
+    }
+
+    main {
+        margin: 20px 10px;
+        padding: 20px;
+    }
+
+    main h1 {
+        font-size: 2em;
+        margin-bottom: 30px;
+    }
+
+    footer {
+        padding: 20px;
+        font-size: 0.85em;
+    }
+}
+
+/* Ultra petits écrans (ex: < 480px) */
+@media (max-width: 480px) {
+    main {
+        padding: 15px;
+    }
+
+    nav ul li {
+        margin: 8px 0;
+    }
+
+    header h1 {
+        font-size: 0.7em;
+    }
+
+    main h1 {
+        font-size: 1.7em;
+    }
+}
